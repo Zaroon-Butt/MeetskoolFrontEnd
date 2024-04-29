@@ -1,12 +1,12 @@
 import axios from "axios";
 
-export async function signUp(
-  userSignUpPayload: UserSignUpPayload
+export async function signIn(
+  signInPayload: UserSignInPayload
 ): Promise<any> {
   try {
-    let response = await axios.post(
-      "http://localhost:5062/api/Account/createUser",
-      userSignUpPayload,
+    const response = await axios.post(
+      "http://localhost:5062/api/Account/userSign",
+      signInPayload,
       {
         headers: {
           "Content-Type": "application/json",
@@ -16,6 +16,7 @@ export async function signUp(
     console.log(response);
     return response;
   } catch (error) {
-    console.log(error);
+    console.error(error);
+    throw error; 
   }
 }

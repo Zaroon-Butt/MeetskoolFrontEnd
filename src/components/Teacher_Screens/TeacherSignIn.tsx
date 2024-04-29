@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Alert } from "react-native";
 import { View, SafeAreaView, StyleSheet } from "react-native";
 import { Button, Card, Text, TextInput } from "react-native-paper";
 
@@ -9,7 +10,29 @@ const TeacherSignUp = () => {
   });
 
   const handleSignIn = () => {
-    // Handle sign in logic here
+    // Regular expressions for email and password formats
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+
+
+    if (!emailRegex.test(signInPayload.email)) {
+      Alert.alert("Invalid Email", "Please enter a valid email address.");
+      return;
+    }
+    // Check if email and password formats are valid
+    if (!emailRegex.test(signInPayload.email)) {
+      Alert.alert("Invalid Email", "Please enter a valid email address.");
+      return;
+    }
+
+    if (!passwordRegex.test(signInPayload.password)) {
+      Alert.alert(
+        "Invalid Password",
+        "Password must contain at least 8 characters, including at least one number, one lowercase letter, and one uppercase letter."
+      );
+      return;
+    }
+    
   };
 
   return (

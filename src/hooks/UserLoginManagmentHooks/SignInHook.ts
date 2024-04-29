@@ -1,23 +1,20 @@
-// import { useState } from "react";
-// import { signIn } from "../../apis/UserLoginManagmentApis";
+import { useState } from "react";
+import { signIn } from "../../apis/UserSignInApi";
 
-// export const signInHook = () => {
-//   const [userLoading, setUserLoading] = useState(false);
-//   const [userSignInResponse, setUserSignInResponse] =
-//     useState<userSignInResponse | undefined>();
+export const SignInHook = () => {
+  const [signingIn, setSigningIn] = useState(false);
+  const [signInResponse, setSignInResponse] = useState<UserSignInResponse | undefined >();
 
-//   const userSignIn = async (signInPayload: UserSignInPayload) => {
-//     try {
-//       console.log("hello in UserSIgnIn ")
-//       setUserLoading(true);
-//       var response = await signIn(signInPayload);
-//       setUserSignInResponse(response);
-//       setUserLoading(false);
-//     } catch {
-//       console.error();
-//     }
-//   };
-//   return { userSignIn, userLoading, userSignInResponse };
-// };
+  const userSignIn = async (signInPayload: UserSignInPayload) => {
+    try {
+      setSigningIn(true);
+      var response = await signIn(signInPayload);
+      setSignInResponse(response);
+      setSigningIn(false);
+    } catch (error) {
+      setSigningIn(false);
+    }
+  };
 
-
+  return { userSignIn, signingIn, signInResponse };
+};

@@ -2,12 +2,11 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 import { BottomNavigation, Text, Card } from "react-native-paper";
 import Icon from "react-native-vector-icons/FontAwesome";
-import MyComponent from "../TestScreen";
 import BottomNavigationBar from "../Navigations/BottomNavigationBar";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import TopNav from "../TestScreen";
+import TopNav from "../Navigations/TopNav";
 
-export default function TeacherHome() {
+ function TeacherHome() {
   return (
     <SafeAreaProvider>
       <SafeAreaView style={{ flex: 1 }}>
@@ -15,7 +14,7 @@ export default function TeacherHome() {
           <View style={styles.header}>
             <TopNav />
           </View>
-          
+
           <View style={styles.content}>
             <View style={styles.avatarContainer} />
             <View style={styles.ratingContainer}>
@@ -80,9 +79,8 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: "row",
     alignItems: "center",
-    //paddingHorizontal: 16,
-    backgroundColor: "#f3e5f5",
-    //paddingVertical: 8,
+    backgroundColor: "white",
+   
   },
   title: {
     fontSize: 18,
@@ -92,7 +90,7 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     padding: 16,
-    paddingBottom: 0, 
+    paddingBottom: 0,
   },
   avatarContainer: {
     width: 80,
@@ -131,3 +129,4 @@ const styles = StyleSheet.create({
     right: 0,
   },
 });
+export default TeacherHome;

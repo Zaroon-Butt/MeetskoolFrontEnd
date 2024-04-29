@@ -1,16 +1,40 @@
 import React, { useState } from "react";
-import { View, Alert, SafeAreaView, StyleSheet } from "react-native";
+import { View, SafeAreaView, StyleSheet, Alert } from "react-native";
 import { Button, Card, Text, TextInput } from "react-native-paper";
-import { signInHook } from "../../hooks/UserLoginManagmentHooks/SignInHook";
+import { SignInHook } from "../../hooks/UserLoginManagmentHooks/SignInHook";
 
-const StudentSignIn = () => {
-  const [signInPayload, setSignInPayload] = useState({
+const StudentSignIn: React.FC = () => {
+  const [signInPayload, setSignInPayload] = useState<UserSignInPayload>({
     email: "",
     password: "",
   });
 
+  const { userSignIn, signInResponse, signingIn} = SignInHook();
+  
   const handleSignIn = () => {
-    // Handle sign in logic here
+    // Regular expressions for email and password formats
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+
+
+    if (!emailRegex.test(signInPayload.email)) {
+      Alert.alert("Invalid Email", "Please enter a valid email address.");
+      return;
+    }
+    // Check if email and password formats are valid
+    if (!emailRegex.test(signInPayload.email)) {
+      Alert.alert("Invalid Email", "Please enter a valid email address.");
+      return;
+    }
+
+    if (!passwordRegex.test(signInPayload.password)) {
+      Alert.alert(
+        "Invalid Password",
+        "Password must contain at least 8 characters, including at least one number, one lowercase letter, and one uppercase letter."
+      );
+      return;
+    }
+    userSignIn(signInPayload);
   };
 
   return (
@@ -47,8 +71,7 @@ const StudentSignIn = () => {
           />
           <Card.Actions>
             <Button mode="contained" onPress={handleSignIn}>
-              {" "}
-              Sign In{" "}
+              Sign In
             </Button>
             <Button mode="contained"> Cancel </Button>
           </Card.Actions>

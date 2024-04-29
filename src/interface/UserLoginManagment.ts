@@ -3,7 +3,7 @@ interface UserSignInPayload {
   password: string;
 }
 
-interface userSignInResponse {
+interface UserSignInResponse {
   data: {
     email: string;
     password: string;

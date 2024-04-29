@@ -4,10 +4,10 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 
 const TopNav = () => (
   <SafeAreaProvider>
-    <Appbar.Header style={{ backgroundColor: "#f3e5f5" }}>
+    <Appbar.Header style={{ backgroundColor: "white" }}>
       <Appbar.BackAction onPress={() => {}} />
       <Appbar.Content title="Meetskool" />
-      <Appbar.Action icon="calendar" onPress={() => {}} />
+      <Appbar.Action icon="Search" onPress={() => {}} />
       <Appbar.Action icon="dots-vertical" onPress={() => {}} />
     </Appbar.Header>
   </SafeAreaProvider>

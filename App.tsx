@@ -11,9 +11,10 @@ import Verify from "./src/components/Verify";
 import TeacherSignUp from "./src/components/Teacher_Screens/TeacherSignIn";
 import TeacherSignUp2 from "./src/components/Teacher_Screens/TeacherSignUp2";
 import StudentSignUp from "./src/components/Student_Screens/StudentSignUp";
-import TeacherHome from "./src/components/Teacher_Screens/TeacherHome";
-import TestScreen from "./src/components/TestScreen";
 import StudentHome from "./src/components/Student_Screens/StudentHome";
+import TeacherHome from "./src/components/Teacher_Screens/TeacherHome";
+import ForgetPassword from "./src/components/Recovery/ForgetPassword";
+import StudentSignIn from "./src/components/Student_Screens/StudentSignIn";
 
 const Stack = createStackNavigator();
 
@@ -29,20 +30,12 @@ function App() {
     // </NavigationContainer>
     //<Verify/>
     //<TeacherSignUp2/>
+    //<StudentSignIn />
+    //<TeacherHome />
+    //<ForgetPassword />
+    //<StudentSignIn/>
     //<StudentSignUp/>
-    //<TeacherHome/>
-   //<TestScreen/>
-   <StudentHome/>
-
+    <ForgetPassword/>
   );
 }
 export default App;
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-});

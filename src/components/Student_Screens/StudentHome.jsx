@@ -1,11 +1,10 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
 import { BottomNavigation, Text, Card } from "react-native-paper";
-import Icon from "react-native-vector-icons/FontAwesome";
-import MyComponent from "../TestScreen";
+
 import BottomNavigationBar from "../Navigations/BottomNavigationBar";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import TopNav from "../TestScreen";
+import TopNav from "../Navigations/TopNav";
 
 export default function TeacherHome() {
   return (
@@ -17,7 +16,6 @@ export default function TeacherHome() {
           </View>
 
           <View style={styles.content}>
-
             <Card mode="elevated" style={styles.card}>
               <Card.Title>Subject</Card.Title>
               <Card.Content>
@@ -28,14 +26,14 @@ export default function TeacherHome() {
             <Card mode="elevated" style={styles.card}>
               <Card.Title>Subject</Card.Title>
               <Card.Content>
-              <Text>Profile 2</Text>
+                <Text>Profile 2</Text>
               </Card.Content>
             </Card>
 
             <Card mode="elevated" style={styles.card}>
               <Card.Title>Subject</Card.Title>
               <Card.Content>
-              <Text>Profile 3</Text>
+                <Text>Profile 3</Text>
               </Card.Content>
             </Card>
           </View>
