@@ -2,9 +2,9 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 import { BottomNavigation, Text, Card } from "react-native-paper";
 import Icon from "react-native-vector-icons/FontAwesome";
-import BottomNavigationBar from "../Navigations/BottomNavigationBar";
+import BottomNavigationBar from "../AppBars/BottomNavigationBar";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import TopNav from "../Navigations/TopNav";
+import TopNav from "../AppBars/TopNav";
 
  function TeacherHome() {
   return (

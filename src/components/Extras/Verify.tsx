@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Alert, SafeAreaView, StyleSheet } from "react-native";
 import { Button, Card, Checkbox, Text, TextInput } from "react-native-paper";
 
-const Verify = () => {
+const Verify: React.FC = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.cardContainer}>
@@ -28,14 +28,22 @@ const Verify = () => {
                 marginBottom: 10,
               }}
             >
-              <Button mode="contained" style={{ marginRight: 15,backgroundColor:'#bbaaee'}}>Verify</Button>
-              <Button mode="contained" style={{backgroundColor:'#bbaaee'}}> Resend </Button>
+              <Button
+                mode="contained"
+                style={{ marginRight: 15, backgroundColor: "#bbaaee" }}
+              >
+                Verify
+              </Button>
+              <Button mode="contained" style={{ backgroundColor: "#bbaaee" }}>
+                {" "}
+                Resend{" "}
+              </Button>
             </View>
           </Card.Actions>
         </Card>
       </View>
     </SafeAreaView>
-  );a
+  );
 };
 
 const styles = StyleSheet.create({

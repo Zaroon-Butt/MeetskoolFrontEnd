@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import { View, SafeAreaView, StyleSheet } from "react-native";
 import { Button, Card, Text, TextInput } from "react-native-paper";
 
-
-
-
-const TeacherSignUp2 = () => {
+const TeacherSignUp2: React.FC = () => {
+  const [signUpPayload, setSignUpPayload] = useState({
+    Skill_1: "",
+    Skill_2: "",
+    Skill_3: "",
+    Skill_4: "",
+  });
 
   return (
     <SafeAreaView style={styles.container}>

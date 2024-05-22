@@ -26,7 +26,6 @@ const StudentSignUp: React.FC = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
 
-
     if (!emailRegex.test(signUpPayload.email)) {
       Alert.alert("Invalid Email", "Please enter a valid email address.");
       return;
