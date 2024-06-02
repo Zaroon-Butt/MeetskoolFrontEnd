@@ -6,7 +6,7 @@ import BottomNavigationBar from "../AppBars/BottomNavigationBar";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import TopNav from "../AppBars/TopNav";
 
- function TeacherHome() {
+const TeacherHome: React.FC = () => {
   return (
     <SafeAreaProvider>
       <SafeAreaView style={{ flex: 1 }}>
@@ -36,26 +36,7 @@ import TopNav from "../AppBars/TopNav";
               </View>
             </View>
 
-            <Card mode="elevated" style={styles.card}>
-              <Card.Title>Subject</Card.Title>
-              <Card.Content>
-                <Text>Maths</Text>
-              </Card.Content>
-            </Card>
-
-            <Card mode="elevated" style={styles.card}>
-              <Card.Title>Subject</Card.Title>
-              <Card.Content>
-                <Text>Maths</Text>
-              </Card.Content>
-            </Card>
-
-            <Card mode="elevated" style={styles.card}>
-              <Card.Title>Subject</Card.Title>
-              <Card.Content>
-                <Text>Maths</Text>
-              </Card.Content>
-            </Card>
+            
           </View>
         </View>
         <View style={styles.BottomNav}>
@@ -64,7 +45,7 @@ import TopNav from "../AppBars/TopNav";
       </SafeAreaView>
     </SafeAreaProvider>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -80,7 +61,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "white",
-   
   },
   title: {
     fontSize: 18,

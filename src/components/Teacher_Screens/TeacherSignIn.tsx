@@ -1,13 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Alert } from "react-native";
 import { View, SafeAreaView, StyleSheet } from "react-native";
 import { Button, Card, Text, TextInput } from "react-native-paper";
+import { useNavigation } from "@react-navigation/native";
 
-const TeacherSignUp = () => {
+import { SignInHook } from "../../hooks/UserLoginManagmentHooks/SignInHook";
+
+const TeacherSignIn: React.FC = () => {
+  const navigation = useNavigation();
+
   const [signInPayload, setSignInPayload] = useState({
     email: "",
     password: "",
   });
+
+  const { userSignIn, signInResponse, signingIn } = SignInHook();
+
 
   const handleSignIn = () => {
     // Regular expressions for email and password formats
@@ -33,7 +41,18 @@ const TeacherSignUp = () => {
       return;
     }
     
-  };
+  }
+  useEffect(() => {
+    if(signInResponse)
+      {
+        if(signInResponse.success === true)
+          {
+           console.log("Sign In Successful");
+           navigation.navigate('TeacherHome' as never);
+          }
+      }
+      return;
+  }, [signInResponse]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -106,4 +125,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TeacherSignUp;
+export default TeacherSignIn;

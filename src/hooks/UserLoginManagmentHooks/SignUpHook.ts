@@ -9,8 +9,8 @@ export const signUpHook = () => {
   const userSignUp = async (signUpPayload: UserSignUpPayload) => {
     try {
       setCreatingUser(true);
-      var response = await signUp(signUpPayload);
-      setUserSignUpResponse(response);
+      var {data} = await signUp(signUpPayload);
+      setUserSignUpResponse(data);
       setCreatingUser(false);
     } catch {
       console.error();

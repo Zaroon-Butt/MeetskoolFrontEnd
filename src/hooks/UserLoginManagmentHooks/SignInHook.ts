@@ -8,8 +8,8 @@ export const SignInHook = () => {
   const userSignIn = async (signInPayload: UserSignInPayload) => {
     try {
       setSigningIn(true);
-      var response = await signIn(signInPayload);
-      setSignInResponse(response);
+      const {data} = await signIn(signInPayload);
+      setSignInResponse(data);
       setSigningIn(false);
     } catch (error) {
       setSigningIn(false);

@@ -1,32 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, SafeAreaView, StyleSheet, Alert } from "react-native";
 import { Button, Card, Text, TextInput } from "react-native-paper";
+import { useNavigation } from "@react-navigation/native";
 import { SignInHook } from "../../hooks/UserLoginManagmentHooks/SignInHook";
 
 const StudentSignIn: React.FC = () => {
+  const navigation = useNavigation();
+
   const [signInPayload, setSignInPayload] = useState<UserSignInPayload>({
     email: "",
     password: "",
   });
 
-  const { userSignIn, signInResponse, signingIn} = SignInHook();
-  
+  const { userSignIn, signInResponse, signingIn } = SignInHook();
+
   const handleSignIn = () => {
-    // Regular expressions for email and password formats
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
 
-
     if (!emailRegex.test(signInPayload.email)) {
       Alert.alert("Invalid Email", "Please enter a valid email address.");
       return;
     }
-    // Check if email and password formats are valid
-    if (!emailRegex.test(signInPayload.email)) {
-      Alert.alert("Invalid Email", "Please enter a valid email address.");
-      return;
-    }
-
     if (!passwordRegex.test(signInPayload.password)) {
       Alert.alert(
         "Invalid Password",
@@ -34,9 +29,21 @@ const StudentSignIn: React.FC = () => {
       );
       return;
     }
+
     userSignIn(signInPayload);
   };
 
+  useEffect(() => {
+    if(signInResponse)
+      {
+        if(signInResponse.success === true)
+          {
+           console.log("Sign In Successful");
+           navigation.navigate('StudentHome' as never);
+          }
+      }
+      return;
+  }, [signInResponse]);
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.cardContainer}>
@@ -50,15 +57,16 @@ const StudentSignIn: React.FC = () => {
           <Text style={styles.cardTitle}>Student Sign In</Text>
           <TextInput
             placeholder="Email"
+            value={signInPayload.email}
             onChangeText={(text) =>
               setSignInPayload({ ...signInPayload, email: text })
             }
             mode="outlined"
             style={styles.input}
           />
-
           <TextInput
             placeholder="Password"
+            value={signInPayload.password}
             onChangeText={(text) =>
               setSignInPayload({
                 ...signInPayload,
@@ -73,7 +81,9 @@ const StudentSignIn: React.FC = () => {
             <Button mode="contained" onPress={handleSignIn}>
               Sign In
             </Button>
-            <Button mode="contained"> Cancel </Button>
+            <Button mode="contained" onPress={() => navigation.goBack()}>
+              Cancel
+            </Button>
           </Card.Actions>
         </Card>
       </View>

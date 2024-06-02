@@ -1,28 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Alert, SafeAreaView, StyleSheet } from "react-native";
 import { Button, Card, Checkbox, Text, TextInput } from "react-native-paper";
 import { signUpHook } from "../../hooks/UserLoginManagmentHooks/SignUpHook";
+import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const StudentSignUp: React.FC = () => {
-  const [initialSignUpPlayload, setInitialSignUpPayload] =
+  const [initialSignUpPayload, setInitialSignUpPayload] =
     useState<UserSignUpPayload>({
       email: "",
       password: "",
       fullName: "",
       phoneNumber: "",
-      isTeacher: true,
+      isTeacher: false,
       isRememberMe: false,
       userImage: "",
     });
-  const [signUpPayload, setSignUpPayload] = useState<UserSignUpPayload>(
-    initialSignUpPlayload
-  );
+
+  const [signUpPayload, setSignUpPayload] =
+    useState<UserSignUpPayload>(initialSignUpPayload);
   const { userSignUp, creatingUser, userSignUpResponse } = signUpHook();
   const [checked, setChecked] = useState(false);
-  const [isRememberMe, setIsRememberMe] = useState(false);
+  const navigation = useNavigation();
 
   const handleSignUp = () => {
-    // Regular expressions for email and password formats
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
 
@@ -30,12 +31,6 @@ const StudentSignUp: React.FC = () => {
       Alert.alert("Invalid Email", "Please enter a valid email address.");
       return;
     }
-    // Check if email and password formats are valid
-    if (!emailRegex.test(signUpPayload.email)) {
-      Alert.alert("Invalid Email", "Please enter a valid email address.");
-      return;
-    }
-
     if (!passwordRegex.test(signUpPayload.password)) {
       Alert.alert(
         "Invalid Password",
@@ -45,6 +40,16 @@ const StudentSignUp: React.FC = () => {
     }
     userSignUp(signUpPayload);
   };
+  const saveId = async () => {
+    if(!creatingUser&& userSignUpResponse)
+      {
+        await AsyncStorage.setItem('studentId',userSignUpResponse.data.userId);
+        navigation.navigate('CreateStudent' as never);
+      }
+  }
+  useEffect(() => {
+    saveId()
+  }, [userSignUpResponse, creatingUser]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -58,7 +63,7 @@ const StudentSignUp: React.FC = () => {
           />
           <Text style={styles.cardTitle}>Student Sign Up</Text>
           <TextInput
-            placeholder="FullName"
+            placeholder="Full Name"
             onChangeText={(text) =>
               setSignUpPayload({ ...signUpPayload, fullName: text })
             }
@@ -83,9 +88,8 @@ const StudentSignUp: React.FC = () => {
             mode="outlined"
             style={styles.input}
           />
-
           <TextInput
-            placeholder="PhoneNumber"
+            placeholder="Phone Number"
             onChangeText={(text) =>
               setSignUpPayload({ ...signUpPayload, phoneNumber: text })
             }
@@ -93,23 +97,33 @@ const StudentSignUp: React.FC = () => {
             style={styles.input}
           />
           <Card.Actions>
-            <View style={styles.RememberText}>
-              <Text>Remember Me</Text>
+            <View style={styles.rememberMeContainer}>
               <Checkbox
                 status={checked ? "checked" : "unchecked"}
                 onPress={() => {
                   setChecked(!checked);
-                  console.log(checked);
-                  isRememberMe ? setIsRememberMe(false) : setIsRememberMe(true);
+                  setSignUpPayload({
+                    ...signUpPayload,
+                    isRememberMe: !checked,
+                  });
                 }}
               />
+              <Text>Remember Me</Text>
             </View>
             <Button mode="contained" onPress={handleSignUp}>
-              {" "}
-              Sign Up{" "}
+              Sign Up
             </Button>
-            <Button mode="contained"> Cancel </Button>
+            <Button mode="contained">Cancel</Button>
           </Card.Actions>
+          <View style={styles.signInContainer}>
+            <Text>Already have an account? </Text>
+            <Button
+              mode="text"
+              onPress={() => navigation.navigate("StudentSignIn" as never)}
+            >
+              Sign In
+            </Button>
+          </View>
         </Card>
       </View>
     </SafeAreaView>
@@ -140,12 +154,17 @@ const styles = StyleSheet.create({
   input: {
     margin: 10,
   },
-  RememberText: {
-    flexDirection: "column",
-    justifyContent: "center",
+  rememberMeContainer: {
+    flexDirection: "row",
     alignItems: "center",
     marginTop: 10,
     marginRight: 10,
+  },
+  signInContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 2,
   },
 });
 

@@ -13,7 +13,6 @@ export async function signIn(
         },
       }
     );
-    console.log(response);
     return response;
   } catch (error) {
     console.error(error);
