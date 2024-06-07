@@ -1,13 +1,67 @@
 import axios from "axios";
 
-export async function getTeacherList(teacherListPayload: GetTeacherListPayLoad): Promise<any> {
-    try {
-        const response = await axios.get(
-            `http://localhost:5197/api/Teachers/getAllTeachers?searchTerm=${teacherListPayload.searchTerm}&page=${teacherListPayload.page}&pageSize=${teacherListPayload.pageSize}`
-        );
-        return response;
-    } catch (error) {
-        console.error(error);
-        throw error;
-    }
+
+
+// GET TEACHER LIST API FOR CARD
+
+export async function getTeacherList(
+  teacherListPayload: GetTeacherListPayLoad
+): Promise<any> {
+  try {
+    const response = await axios.get(
+      `http://localhost:5197/api/Teachers/getAllTeachers?searchTerm=${teacherListPayload.searchTerm}&page=${teacherListPayload.page}&pageSize=${teacherListPayload.pageSize}`
+    );
+    return response;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 }
+
+    // CREATE TEACHER API
+
+export async function createTeacher(createTeacherPayLoad: CreateTeacherPayLoad ) {
+    try {
+      const response = await axios.post('http://localhost:5197/api/Teachers/createTeacherEducation', createTeacherPayLoad ,{
+        headers: {
+          'Accept': 'text/plain',
+          'Content-Type': 'application/json'
+        }
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error in Teacher Creation:', error)}}
+
+
+      //TEACHER EdUCATION API
+
+export async function createTeacherEducation(
+    createTeacherEducationPayLoad: CreateTeacherEducationPayLoad
+  ) {
+    try {
+      const response = await axios.post(
+        "http://localhost:5197/api/Teachers/createTeacher", createTeacherEducationPayLoad,
+        {
+          headers: {
+            Accept: "text/plain",
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error in Teacher Education Creation:", error);
+    }
+  }
+  
+  export async function getTeacherInfo( teacherId:string): Promise<any> {
+    try {
+      const response = await axios.get(
+        `http://localhost:5197/api/Teachers/getTeacherInfo?teacherId=${teacherId}`
+      );
+      return response;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }

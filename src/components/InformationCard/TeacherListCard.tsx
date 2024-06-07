@@ -1,11 +1,20 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { View } from "react-native";
 import { Button, Card, Text } from "react-native-paper";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { NavigationProp } from '@react-navigation/native';
 
 export const TeacherListCard: React.FC<{
   teacherList: GetTeacherListResponse | undefined;
 }> = ({ teacherList }) => {
+
+  const navigation: NavigationProp<any, any> = useNavigation();
+
+  const handleViewProfile = (teacherId: string) => {
+
+    navigation.navigate('TeacherInfoView', { teacherId: teacherId });
+  };
+
   return (
     <SafeAreaProvider>
       <SafeAreaView style={{ flex: 1 }}>
@@ -19,7 +28,7 @@ export const TeacherListCard: React.FC<{
                 <Text>Teacher Subject</Text>
               </Card.Content>
               <Card.Actions>
-                <Button mode="contained">View Profile</Button>
+                <Button mode="contained"onPress={() => handleViewProfile(teacher.teacherId)}>View Profile</Button>
               </Card.Actions>
             </Card>
           ))

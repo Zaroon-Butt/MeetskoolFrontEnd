@@ -34,16 +34,14 @@ const StudentSignIn: React.FC = () => {
   };
 
   useEffect(() => {
-    if(signInResponse)
-      {
-        if(signInResponse.success === true)
-          {
-           console.log("Sign In Successful");
-           navigation.navigate('StudentHome' as never);
-          }
+    if (signInResponse) {
+      if (signInResponse.success === true) {
+        console.log("Sign In Successful");
+        navigation.navigate('StudentHome' as never);
       }
-      return;
+    }
   }, [signInResponse]);
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.cardContainer}>
@@ -77,13 +75,22 @@ const StudentSignIn: React.FC = () => {
             mode="outlined"
             style={styles.input}
           />
-          <Card.Actions>
-            <Button mode="contained" onPress={handleSignIn}>
-              Sign In
+          <Card.Actions style={styles.actions}>
+            <Button
+              mode="text"
+              onPress={() => navigation.navigate("ForgotPassword" as never)}
+              style={styles.forgotPasswordButton}
+            >
+              Forgot Password?
             </Button>
-            <Button mode="contained" onPress={() => navigation.goBack()}>
-              Cancel
-            </Button>
+            <View style={styles.rightActions}>
+              <Button mode="contained" onPress={handleSignIn} >
+                Sign In
+              </Button>
+              <Button mode="contained" onPress={() => navigation.goBack()} style={styles.cancelButton}>
+                Cancel
+              </Button>
+            </View>
           </Card.Actions>
         </Card>
       </View>
@@ -114,6 +121,22 @@ const styles = StyleSheet.create({
   },
   input: {
     margin: 10,
+  },
+  actions: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingHorizontal: 10,
+  },
+  rightActions: {
+    flexDirection: "row",
+  },
+  forgotPasswordButton: {
+    marginLeft: 10
+  },
+
+  cancelButton: {
+    marginLeft: 5,
   },
 });
 

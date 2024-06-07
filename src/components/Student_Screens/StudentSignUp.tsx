@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { View, Alert, SafeAreaView, StyleSheet } from "react-native";
 import { Button, Card, Checkbox, Text, TextInput } from "react-native-paper";
 import { signUpHook } from "../../hooks/UserLoginManagmentHooks/SignUpHook";
-import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { NavigationProp } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 
 const StudentSignUp: React.FC = () => {
   const [initialSignUpPayload, setInitialSignUpPayload] =
@@ -21,7 +22,7 @@ const StudentSignUp: React.FC = () => {
     useState<UserSignUpPayload>(initialSignUpPayload);
   const { userSignUp, creatingUser, userSignUpResponse } = signUpHook();
   const [checked, setChecked] = useState(false);
-  const navigation = useNavigation();
+  const navigation: NavigationProp<any, any> = useNavigation();
 
   const handleSignUp = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -44,7 +45,8 @@ const StudentSignUp: React.FC = () => {
     if(!creatingUser&& userSignUpResponse)
       {
         await AsyncStorage.setItem('studentId',userSignUpResponse.data.userId);
-        navigation.navigate('CreateStudent' as never);
+        let isTeacher = signUpPayload.isTeacher;
+        navigation.navigate('Verify', { isTeacher , id: userSignUpResponse.data.userId, email: userSignUpResponse.data.email, code: userSignUpResponse.data.code});
       }
   }
   useEffect(() => {

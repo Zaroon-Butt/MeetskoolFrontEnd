@@ -22,7 +22,7 @@ const TeacherSignUp2: React.FC = () => {
           />
           <Text style={styles.cardTitle}>Teacher Sign Up 2</Text>
           <TextInput
-            placeholder="Skill 1"
+            placeholder="Subject 1"
             onChangeText={(text) =>
               setSignUpPayload({ ...signUpPayload, Skill_1: text })
             }
@@ -30,7 +30,7 @@ const TeacherSignUp2: React.FC = () => {
             style={styles.input}
           />
           <TextInput
-            placeholder="Skill 2"
+            placeholder="Subject 2"
             onChangeText={(text) =>
               setSignUpPayload({ ...signUpPayload, Skill_2: text })
             }
@@ -38,7 +38,7 @@ const TeacherSignUp2: React.FC = () => {
             style={styles.input}
           />
           <TextInput
-            placeholder="Skill 3"
+            placeholder="Subject 3"
             onChangeText={(text) =>
               setSignUpPayload({ ...signUpPayload, Skill_3: text })
             }
@@ -48,7 +48,7 @@ const TeacherSignUp2: React.FC = () => {
           />
 
           <TextInput
-            placeholder="Skill 4"
+            placeholder="Subject 4"
             onChangeText={(text) =>
               setSignUpPayload({ ...signUpPayload, Skill_4: text })
             }

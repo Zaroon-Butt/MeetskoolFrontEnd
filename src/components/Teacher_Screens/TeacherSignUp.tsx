@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Alert, SafeAreaView, StyleSheet } from "react-native";
 import { Button, Card, Checkbox, Text, TextInput } from "react-native-paper";
 import { signUpHook } from "../../hooks/UserLoginManagmentHooks/SignUpHook";
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { NavigationProp } from '@react-navigation/native';
+
+
 
 const TeacherSignUp: React.FC = () => {
   const { userSignUp, creatingUser, userSignUpResponse } = signUpHook();
@@ -18,7 +22,8 @@ const TeacherSignUp: React.FC = () => {
   });
   const [signUpPayload, setSignUpPayload] = useState<UserSignUpPayload>(initialSignUpPlayload);
   
-  const navigation = useNavigation();
+  const navigation: NavigationProp<any, any> = useNavigation();
+
 
   const handleSignUp = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -40,8 +45,19 @@ const TeacherSignUp: React.FC = () => {
       return;
     }
 
-    userSignUp(signUpPayload); // Assuming this function handles the sign-up logic
+    userSignUp(signUpPayload);
   };
+  const saveId = async () => {
+    if(!creatingUser&& userSignUpResponse)
+      {
+        await AsyncStorage.setItem('TeacherId',userSignUpResponse.data.userId);
+        let isTeacher = signUpPayload.isTeacher;
+        navigation.navigate('Verify', { isTeacher, id: userSignUpResponse.data.userId, email: userSignUpResponse.data.email, code: userSignUpResponse.data.code});
+      }
+  }
+  useEffect(() => {
+    saveId()
+  }, [userSignUpResponse, creatingUser]);
 
   return (
     <SafeAreaView style={styles.container}>

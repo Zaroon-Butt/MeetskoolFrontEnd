@@ -1,4 +1,5 @@
 import axios from "axios";
+
 export async function forgotPassword(email:string): Promise<any> {
   try {
     const response = await axios.get(
