@@ -20,7 +20,7 @@ export const TeacherListCard: React.FC<{
       <SafeAreaView style={{ flex: 1 }}>
         {teacherList && teacherList.success ? (
           teacherList.data.map((teacher) => (
-            <Card mode="elevated" key={teacher.teacherId}>
+            <Card mode="elevated" key={teacher.teacherId} style={{marginBottom:10}}>
               <Card.Title title={teacher.teacherName} />
               <Card.Content>
                 <Text>{teacher.teacherName}</Text>

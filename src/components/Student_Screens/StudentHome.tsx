@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet , ScrollView} from "react-native";
 import { Button } from "react-native-paper";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import TopNav from "../AppBars/TopNav";
@@ -8,8 +8,10 @@ import { TeacherListCard } from "../InformationCard/TeacherListCard";
 import { Searchbar } from "react-native-paper";
 import { GetTeacherListHook } from "../../hooks/TeacherHooks/GetTeacherListHook";
 
+
 const StudentHome: React.FC = () => {
-  const [getTeacherInitialPayLoad, setGetTeacherInitialPayLoad] = useState<GetTeacherListPayLoad>({
+  const [getTeacherInitialPayLoad, setGetTeacherInitialPayLoad] =
+    useState<GetTeacherListPayLoad>({
       searchTerm: "",
       page: 1,
       pageSize: 10,
@@ -17,14 +19,15 @@ const StudentHome: React.FC = () => {
 
   const [searchQuery, setSearchQuery] = useState<string>("");
 
-  const [getTeacherPayload, setGetTeacherPayload] = useState<GetTeacherListPayLoad>(getTeacherInitialPayLoad);
- 
+  const [getTeacherPayload, setGetTeacherPayload] =
+    useState<GetTeacherListPayLoad>(getTeacherInitialPayLoad);
+
   const { teacherList, loading, fetchTeacherList } = GetTeacherListHook();
 
   useEffect(() => {
     fetchTeacherList(getTeacherPayload);
   }, [getTeacherPayload]);
-  
+
   useEffect(() => {
     setGetTeacherPayload({
       ...getTeacherPayload,
@@ -46,7 +49,9 @@ const StudentHome: React.FC = () => {
                 backgroundColor: "white",
               }}
               placeholder="Search"
-              onChangeText={(text) => {setSearchQuery(text)}}
+              onChangeText={(text) => {
+                setSearchQuery(text);
+              }}
               value={searchQuery}
             />
             <Button
@@ -57,12 +62,15 @@ const StudentHome: React.FC = () => {
               Filter
             </Button>
           </View>
-
-          <View style={styles.content}>
-            {teacherList && !loading && (
-              <TeacherListCard teacherList={teacherList} />
-            )}
-          </View>
+          <ScrollView>
+            <View style={styles.content}>
+              {teacherList && !loading && (
+                
+                <TeacherListCard teacherList={teacherList} />
+                
+              )}
+            </View>
+          </ScrollView>
         </View>
         <View style={styles.BottomNav}>
           <BottomNavigationBar />
@@ -77,11 +85,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#f3e5f5",
   },
-  card: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: 16,
-  },
   header: {
     flexDirection: "row",
     alignItems: "center",
@@ -91,6 +94,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
     paddingBottom: 10,
+    
   },
 
   BottomNav: {

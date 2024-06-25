@@ -19,14 +19,10 @@ const BottomNavigationBar = () => {
       focusedIcon: "heart",
       unfocusedIcon: "heart-outline",
     },
-    { key: "albums", title: "Albums", focusedIcon: "album" },
+    { key: "albums", title: "View Profile", focusedIcon: "album" },
     { key: "recents", title: "Recents", focusedIcon: "history" },
-    {
-      key: "notifications",
-      title: "Notifications",
-      focusedIcon: "bell",
-      unfocusedIcon: "bell-outline",
-    },
+    {key: "notifications",title: "Notifications",},
+    { focusedIcon: "bell", unfocusedIcon: "bell-outline" },
   ]);
 
   const renderScene = BottomNavigation.SceneMap({

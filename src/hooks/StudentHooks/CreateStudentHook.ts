@@ -15,6 +15,5 @@ export const CreateStudentHook = () => {
       console.error();
     }
   };
-  return { addStudent, creatingStudent, createStudentResponse
-   };
+  return { addStudent, creatingStudent, createStudentResponse};
 };

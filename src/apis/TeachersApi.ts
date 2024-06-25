@@ -65,3 +65,16 @@ export async function createTeacherEducation(
       throw error;
     }
   }
+
+
+  export async function updateTeacher (createTeacherPayLoad: CreateTeacherPayLoad ) {
+    try {
+      const response = await axios.patch('http://localhost:5197/api/Teachers/updateTeacher', createTeacherPayLoad ,{
+        headers: {
+          'Accept': 'text/plain',
+          'Content-Type': 'application/json'
+        }
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error in  Updating Teacher :', error)}}

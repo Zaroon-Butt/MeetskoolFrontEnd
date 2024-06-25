@@ -5,6 +5,11 @@ import { CreateTeacherEducationHook } from "../../hooks/TeacherHooks/CreateTeach
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+type EducationtNavigationProp = {
+    navigate(arg0: never, arg1: { teacherId: string; }): unknown;
+    teacherId: { teacherId: string };
+  };
+
 const TeacherEducation: React.FC = () => {
     const [initialCreateTeacherEducation, setInitialCreateTeacherEducation] = useState<CreateTeacherEducationPayLoad>({
         TeacherId: "",
@@ -12,10 +17,9 @@ const TeacherEducation: React.FC = () => {
         degree: "",
         semester: 0
     });
-    const navigation = useNavigation();
-    const [CreateTeacherEducationPayLoad, setCreateTeacherEducationPayload] = useState<CreateTeacherEducationPayLoad>(initialCreateTeacherEducation);
+    const navigation = useNavigation<EducationtNavigationProp>();
 
-    // Call the hook inside the component
+    const [CreateTeacherEducationPayLoad, setCreateTeacherEducationPayload] = useState<CreateTeacherEducationPayLoad>(initialCreateTeacherEducation);
     const { addEducation, creatingTeacherEducation, teacherEducationResponse } = CreateTeacherEducationHook();
 
     const TeacherEducationInfo = async () => {
@@ -23,6 +27,8 @@ const TeacherEducation: React.FC = () => {
         if (TeacherId && CreateTeacherEducationPayLoad.departmentName && CreateTeacherEducationPayLoad.degree && CreateTeacherEducationPayLoad.semester) {
             setCreateTeacherEducationPayload({ ...CreateTeacherEducationPayLoad, TeacherId: TeacherId });
             addEducation(CreateTeacherEducationPayLoad);
+            navigation.navigate("TeacherSubject" as never, { teacherId: TeacherId });
+
         } else {
             Alert.alert("Please fill all the fields");
         }
@@ -31,6 +37,7 @@ const TeacherEducation: React.FC = () => {
     useEffect(() => {
         if (teacherEducationResponse && !creatingTeacherEducation && teacherEducationResponse.success) {
             console.log(teacherEducationResponse);
+            console.log(" ya teaher Education ka response ha");
             // Add navigation to Education screen here if needed
         }
     }, [teacherEducationResponse]);

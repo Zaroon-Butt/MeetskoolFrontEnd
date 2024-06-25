@@ -41,6 +41,7 @@ const CreateTeacher: React.FC = () => {
 
     const setId = async () => {
       let id = await AsyncStorage.getItem("TeacherId");
+      console.log(id)
       if(id)
         {
           setCreateTeacherPayload({

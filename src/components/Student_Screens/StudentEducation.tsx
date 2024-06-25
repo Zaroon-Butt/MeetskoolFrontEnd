@@ -12,6 +12,11 @@ interface CreateStudentEducationPayLoad {
   semester: number;
 }
 
+type StudentSubjectNavigationProp = {
+  navigate(arg0: never, arg1: { studentId: string; }): unknown;
+  StudentSubject: { studentId: string };
+};
+
 const StudentEducation: React.FC = () => {
   const [initialCreateStudentEducation, setInitialCreateStudentEducation] = useState<CreateStudentEducationPayLoad>({
     studentId: "",
@@ -20,21 +25,22 @@ const StudentEducation: React.FC = () => {
     semester: 0
   });
 
-  const navigation = useNavigation();
-  const [CreateStudentEducationPayLoad, setCreateStudentEducationPayload] = useState<CreateStudentEducationPayLoad>(initialCreateStudentEducation);
+  const navigation = useNavigation<StudentSubjectNavigationProp>();
+  const [createStudentEducationPayload, setCreateStudentEducationPayload] = useState<CreateStudentEducationPayLoad>(initialCreateStudentEducation);
 
   const { addEducation, creatingStudentEducation, studentEducationResponse } = CreateStudentEducationHook();
 
   const StudentEducationInfo = async () => {
     let studentId = await AsyncStorage.getItem('studentId');
-    if (studentId && CreateStudentEducationPayLoad.departmentName && CreateStudentEducationPayLoad.degree && CreateStudentEducationPayLoad.semester) {
-      setCreateStudentEducationPayload({ ...CreateStudentEducationPayLoad, studentId: studentId });
-      addEducation(CreateStudentEducationPayLoad);
-      navigation.navigate("StudentHome" as never);
+    if (studentId && createStudentEducationPayload.departmentName && createStudentEducationPayload.degree && createStudentEducationPayload.semester) {
+      const payload = { ...createStudentEducationPayload, studentId: studentId };
+      setCreateStudentEducationPayload(payload);
+      addEducation(payload);
+      navigation.navigate("StudentSubject" as never, { studentId: studentId });
     } else {
       Alert.alert("Please fill all the fields");
     }
-  }
+  };
 
   useEffect(() => {
     if (studentEducationResponse && !creatingStudentEducation && studentEducationResponse.success) {
@@ -61,24 +67,24 @@ const StudentEducation: React.FC = () => {
               placeholder="Enter Department Name"
               mode="outlined"
               style={styles.input}
-              value={CreateStudentEducationPayLoad.departmentName}
-              onChangeText={(text) => setCreateStudentEducationPayload({ ...CreateStudentEducationPayLoad, departmentName: text })}
+              value={createStudentEducationPayload.departmentName}
+              onChangeText={(text) => setCreateStudentEducationPayload({ ...createStudentEducationPayload, departmentName: text })}
             />
             <TextInput
               label="Degree"
               placeholder="Enter Degree"
               mode="outlined"
               style={styles.input}
-              value={CreateStudentEducationPayLoad.degree}
-              onChangeText={(text) => setCreateStudentEducationPayload({ ...CreateStudentEducationPayLoad, degree: text })}
+              value={createStudentEducationPayload.degree}
+              onChangeText={(text) => setCreateStudentEducationPayload({ ...createStudentEducationPayload, degree: text })}
             />
             <TextInput
               label="Semester"
               placeholder="Enter Semester"
               mode="outlined"
               style={styles.input}
-              value={CreateStudentEducationPayLoad.semester.toString()}
-              onChangeText={(text) => setCreateStudentEducationPayload({ ...CreateStudentEducationPayLoad, semester: Number(text) })}
+              value={createStudentEducationPayload.semester.toString()}
+              onChangeText={(text) => setCreateStudentEducationPayload({ ...createStudentEducationPayload, semester: Number(text) })}
             />
           </Card.Content>
           <Card.Actions style={styles.cardActions}>
