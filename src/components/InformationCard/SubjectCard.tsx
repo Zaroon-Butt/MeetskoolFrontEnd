@@ -23,7 +23,7 @@ export const SubjectCard: React.FC<SubjectCardProps> = ({
 
   const handleAddSubject = async (subjectId: string, subjectName: string) => {
     if (studentId) {
-      await addSubject({ studentId , subjectId });
+      await addSubject({ studentId: teacherId , subjectId });
       if (addSubjectResponse && addSubjectResponse.success) {
         onAddSubject(subjectName); // Call parent callback function
       } else {

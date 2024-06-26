@@ -1,24 +1,65 @@
-import React from "react";
-import {View, StyleSheet} from "react-native";
-import {Button, Card, Chip, Text} from "react-native-paper";
+import React, {useEffect} from "react";
+import {GetStudentInfoHook} from "../../hooks/StudentHooks/GetStudentInfoHook";
+import {NavigationProp, useNavigation} from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import {SafeAreaProvider, SafeAreaView} from "react-native-safe-area-context";
-import TopNav from "../AppBars/TopNav";
+import {Button, Card, Chip, Text} from "react-native-paper";
 import CardActions from "react-native-paper/lib/typescript/components/Card/CardActions";
+import {StyleSheet} from "react-native";
+import {GetTeacherInfoHook} from "../../hooks/TeacherHooks/GetTeacherInfoHook";
 
-export const TeacherInfoCard: React.FC<{
-    teacherInfo: GetTeacherInfoResponse | undefined;
-}> = ({teacherInfo}) => {
+export const TeacherProfile: React.FC = () => {
+
+    const {fetchTeacherInfo, loading, teacherInfo} = GetTeacherInfoHook();
+    const navigation: NavigationProp<any, any> = useNavigation();
+
+    useEffect(() => {
+        getTeacherInfo();
+    }, []);
+
+    const getTeacherInfo = async () => {
+        let teacherId = await AsyncStorage.getItem('teacherId');
+        if (teacherId) {
+            fetchTeacherInfo(teacherId);
+        }
+    }
+    const handleProfile = () => {
+        if (teacherInfo && teacherInfo.success) {
+            navigation.navigate('UpdateTeacherProfile', {
+                teacherId: teacherInfo.data.teacherId,
+                teacherName: teacherInfo.data.teacherName,
+                description: teacherInfo.data.descriptions
+            });
+        }
+    }
+    const handleEducation = () => {
+        if (teacherInfo && teacherInfo.success) {
+            navigation.navigate('UpdateTeacherEducation', {
+                teacherId: teacherInfo.data.teacherId,
+                degree: teacherInfo.data.degree,
+                semester: teacherInfo.data.semester,
+                departmentName: teacherInfo.data.departmentName
+            });
+        }
+    }
+    const handleSubject = () => {
+        if (teacherInfo && teacherInfo.success) {
+            navigation.navigate('UpdateSubjects', {
+                teacherId: teacherInfo.data.teacherId,
+                subjects: teacherInfo.data.subjects,
+            });
+        }
+    }
     return (
         <SafeAreaProvider>
             <SafeAreaView style={{flex: 1}}>
-                <TopNav></TopNav>
                 {teacherInfo && teacherInfo.success ? (
                     <>
                         <Card mode="elevated" style={styles.card}>
                             <Card.Title title="Profile"/>
                             <Card.Content>
                                 <Text style={styles.field}>
-                                    <Text style={styles.label}>Student Name:</Text> {teacherInfo.data.studentName}
+                                    <Text style={styles.label}>Student Name:</Text> {teacherInfo.data.teacherName}
                                 </Text>
                                 <Text style={styles.field}>
                                     <Text style={styles.label}>Description:</Text> {teacherInfo.data.descriptions}
@@ -31,6 +72,9 @@ export const TeacherInfoCard: React.FC<{
                                     <Text style={styles.label}>Total Order:</Text> {teacherInfo.data.totalOrder}
                                 </Text>
                             </Card.Content>
+                            <CardActions>
+                                <Button mode="contained" onPress={handleProfile}>Edit</Button>
+                            </CardActions>
                         </Card>
                         <Card mode="elevated" style={styles.card}>
                             <Card.Title title="Education"/>
@@ -46,7 +90,9 @@ export const TeacherInfoCard: React.FC<{
                                     <Text style={styles.label}>Semester:</Text> {teacherInfo.data.semester}
                                 </Text>
                             </Card.Content>
-
+                            <CardActions>
+                                <Button mode="contained" onPress={handleEducation}>Edit</Button>
+                            </CardActions>
                         </Card>
                         <Card mode="elevated" style={styles.card}>
                             <Card.Title title="Subjects"/>
@@ -57,6 +103,9 @@ export const TeacherInfoCard: React.FC<{
                                     </Chip>
                                 ))}
                             </Card.Content>
+                            <CardActions>
+                                <Button mode="contained" onPress={handleSubject}>Edit</Button>
+                            </CardActions>
 
                         </Card>
                     </>
@@ -70,13 +119,13 @@ export const TeacherInfoCard: React.FC<{
 
 const styles = StyleSheet.create({
     card: {
-        width: "100%",
+        width: '100%',
         marginVertical: 10,
     },
     field: {
         marginBottom: 5,
     },
     label: {
-        fontWeight: "bold",
+        fontWeight: 'bold',
     },
 });

@@ -54,11 +54,12 @@ interface CreateStudentEducationResponse {
 interface GetStudentInfoResponse {
     data: {
         descriptions: string;
-        createdAt: string; // Alternatively, use Date if you want to work with Date objects
+        createdAt: string;
         totalOrder: string;
         departmentName: string;
         degree: string;
         semester: number;
+        studentId: string;
         subjects: {
             subjectName: string;
         }[];
@@ -74,6 +75,40 @@ interface GetStudentListResponse {
         studentName: string;
         studentId: string;
     }[];
+    success: boolean;
+    messages: string[];
+    error: string[];
+}
+
+interface UpdateStudentProfilePayload {
+    studentId: string,
+    descriptions: string,
+    studentName: string
+}
+
+interface UpdateStudentProfileResponse {
+    data: {
+        descriptions: string;
+        totalOrder: string;
+    };
+    success: boolean;
+    messages: string[];
+    error: string[];
+}
+
+interface UpdateStudentEducationPayload {
+    studentId: string,
+    departmentName: string,
+    degree: string,
+    semester: number
+}
+
+interface UpdateStudentEducationResponse {
+    data: {
+        departmentName: string;
+        degree: string;
+        semester: number;
+    };
     success: boolean;
     messages: string[];
     error: string[];

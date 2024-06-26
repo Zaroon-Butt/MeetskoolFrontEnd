@@ -23,7 +23,7 @@ export const FriendCard: React.FC<FriendCardProps> = ({
             setAddFriendPayLoad({
                 friendId: friendId,
                 friendName: friendName,
-                studentId: studentId,
+                teacherId: studentId,
             });
             if (addFriendPayLoad) {
                 addFriend(addFriendPayLoad);

@@ -27,7 +27,7 @@ const TeacherEducation: React.FC = () => {
         if (TeacherId && CreateTeacherEducationPayLoad.departmentName && CreateTeacherEducationPayLoad.degree && CreateTeacherEducationPayLoad.semester) {
             setCreateTeacherEducationPayload({ ...CreateTeacherEducationPayLoad, TeacherId: TeacherId });
             addEducation(CreateTeacherEducationPayLoad);
-            navigation.navigate("TeacherSubject" as never, { teacherId: TeacherId });
+            navigation.navigate("TeacherSubject" as never, { studentId: TeacherId });
             console.log(TeacherId);
 
         } else {

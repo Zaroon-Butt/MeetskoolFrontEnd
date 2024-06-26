@@ -44,7 +44,7 @@ const StudentSubject: React.FC = () => {
 
   const handleNext = () => {
     if (teacherId) {
-      navigation.navigate("TeacherHome"as  never , { teacherId: teacherId} );
+      navigation.navigate("TeacherHome"as  never , { studentId: teacherId} );
     } else {
       Alert.alert("Teacher ID not found");
     }
