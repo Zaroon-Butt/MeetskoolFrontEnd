@@ -11,7 +11,6 @@ import StudentSignIn from "./src/components/Student_Screens/StudentSignIn";
 import Verify from "./src/components/Extras/Verify";
 import SignUp from "./src/components/Student_Screens/StudentSignUp";
 import StartUp from "./src/components/Extras/StartUp";
-import TeacherSignIn from "./src/components/Teacher_Screens/TeacherSignIn";
 import TeacherSignUp from "./src/components/Teacher_Screens/TeacherSignUp";
 import CreateStudent from "./src/components/Student_Screens/CreateStudent";
 import StudentEducation from "./src/components/Student_Screens/StudentEducation";
@@ -21,6 +20,10 @@ import TeacherEducation from "./src/components/Teacher_Screens/TeacherEducation"
 import TeacherSubject from "./src/components/Teacher_Screens/TeacherSubject";
 import StudentSubject from "./src/components/Student_Screens/StudentSubject";
 import {StudentInfo} from "./src/components/Student_Screens/StudentInfo";
+import {AddFriend} from "./src/components/FriendScreen/AddFriend";
+import ShowStudentFriends from "./src/components/FriendScreen/ShowStudentFriends";
+
+// todo add pages name here
 
 export type RootStackParamList = {
   Home: undefined;
@@ -43,6 +46,8 @@ export type RootStackParamList = {
   TeacherSubject: undefined;
   StudentSubject: undefined;
   StudentInfo: undefined;
+  AddFriend: undefined;
+  ShowStudentFriends: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -50,7 +55,7 @@ const Stack = createStackNavigator<RootStackParamList>();
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="StudentInfo">
+      <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="TeacherSignUp" component={TeacherSignUp} />
         <Stack.Screen name="StudentSignUp" component={StudentSignUp} />
@@ -70,6 +75,8 @@ function App() {
         <Stack.Screen name="TeacherSubject" component={TeacherSubject} />
        <Stack.Screen name="StudentSubject" component={StudentSubject} />
        <Stack.Screen name="StudentInfo" component={StudentInfo} />
+       <Stack.Screen name="AddFriend" component={AddFriend} />
+       <Stack.Screen name="ShowStudentFriends" component={ShowStudentFriends} />
       </Stack.Navigator>
     </NavigationContainer>
   );
