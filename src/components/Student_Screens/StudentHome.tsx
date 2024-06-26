@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet , ScrollView} from "react-native";
+import { View, StyleSheet, ScrollView } from "react-native";
 import { Button } from "react-native-paper";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import TopNav from "../AppBars/TopNav";
@@ -7,7 +7,7 @@ import BottomNavigationBar from "../AppBars/BottomNavigationBar";
 import { TeacherListCard } from "../InformationCard/TeacherListCard";
 import { Searchbar } from "react-native-paper";
 import { GetTeacherListHook } from "../../hooks/TeacherHooks/GetTeacherListHook";
-
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const StudentHome: React.FC = () => {
   const [getTeacherInitialPayLoad, setGetTeacherInitialPayLoad] =
@@ -23,6 +23,17 @@ const StudentHome: React.FC = () => {
     useState<GetTeacherListPayLoad>(getTeacherInitialPayLoad);
 
   const { teacherList, loading, fetchTeacherList } = GetTeacherListHook();
+
+  const StudentId = async () => {
+  let studentId = await AsyncStorage.getItem('studentId');
+  console.log(studentId);
+  };
+
+  useEffect(() => {
+    StudentId();
+  }, []);
+
+
 
   useEffect(() => {
     fetchTeacherList(getTeacherPayload);
@@ -65,9 +76,7 @@ const StudentHome: React.FC = () => {
           <ScrollView>
             <View style={styles.content}>
               {teacherList && !loading && (
-                
                 <TeacherListCard teacherList={teacherList} />
-                
               )}
             </View>
           </ScrollView>
@@ -94,7 +103,6 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
     paddingBottom: 10,
-    
   },
 
   BottomNav: {

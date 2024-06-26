@@ -13,6 +13,7 @@ const ShowStudentFriends: React.FC = () => {
         fetchFriends();
     }, []);
 
+    
     const fetchFriends = () => {
         // todo use that storage func to get userId
         fetchStudentFriends("studentId");

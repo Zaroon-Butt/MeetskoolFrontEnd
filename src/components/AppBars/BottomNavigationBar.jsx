@@ -10,25 +10,25 @@ const BottomNavigationBar = () => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.iconContainer}>
+      <TouchableOpacity style={styles.iconContainer} onPress={() => navigation.navigate('Chatting')}>
         <View style={styles.iconAndText}>
           <Icon name="comments" size={24} color="#705AA9" />
-          <Text style={styles.iconTitle}>Comment</Text>
+          <Text style={styles.iconTitle}>Message</Text>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.iconContainer}>
+      <TouchableOpacity style={styles.iconContainer}  onPress={() => navigation.navigate('ShowStudentFriends')}>
         <View style={styles.iconAndText}>
           <Icon name="users" size={24} color="#705AA9" />
           <Text style={styles.iconTitle}>Friends</Text>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.iconContainer}>
+      <TouchableOpacity style={styles.iconContainer}  onPress={() => navigation.navigate('Order')}>
         <View style={styles.iconAndText}>
-          <Icon name="shopping-cart" size={24} color="#705AA9" onPress={navigation.navigate('ShowStudentFriend')}/>
+          <Icon name="shopping-cart" size={24} color="#705AA9" />
           <Text style={styles.iconTitle}>Order</Text>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.iconContainer}>
+      <TouchableOpacity style={styles.iconContainer} onPress={() => navigation.navigate('StudentSignIn')}>
         <View style={styles.iconAndText}>
           <Icon name="sign-out" size={24} color="#705AA9" />
           <Text style={styles.iconTitle}>Log-Out</Text>
