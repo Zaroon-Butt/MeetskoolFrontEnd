@@ -20,8 +20,8 @@ const Home: React.FC = () => {
                     style={styles.cover}
                 />
                 <Card.Actions style={styles.actions}>
-                    <Button mode="contained" onPress={() => navigation.navigate("StartUp")} style={styles.button}>Sign Up</Button>
-                    <Button mode="contained" onPress={() => navigation.navigate("StartUp")} style={styles.button}>Sign In</Button>
+                    <Button mode="contained" onPress={() => navigation.navigate("StartUp"as never)} style={styles.button}>Sign Up</Button>
+                    <Button mode="contained" onPress={() => navigation.navigate("StartUp" as never)} style={styles.button}>Sign In</Button>
                 </Card.Actions>
             </Card>
         </View>

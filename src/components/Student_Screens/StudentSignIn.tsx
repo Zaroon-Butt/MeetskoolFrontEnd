@@ -3,6 +3,7 @@ import { View, SafeAreaView, StyleSheet, Alert } from "react-native";
 import { Button, Card, Text, TextInput } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import { SignInHook } from "../../hooks/UserLoginManagmentHooks/SignInHook";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const StudentSignIn: React.FC = () => {
 
@@ -35,12 +36,20 @@ const StudentSignIn: React.FC = () => {
 
     userSignIn(signInPayload);
   };
+  const saveId = async () => {
+
+    if(!signingIn && signInResponse)
+      {
+        await AsyncStorage.setItem('studentId',signInResponse.data.userInfo.id);
+      }
+  }
 
   useEffect(() => {
     if (signInResponse) {
       if (signInResponse.success === true) {
         console.log("Sign In Successful");
-        navigation.navigate('StudentHome' as never);
+        saveId();
+        navigation.navigate('StudentHome' as never );
       }
     }
   }, [signInResponse]);

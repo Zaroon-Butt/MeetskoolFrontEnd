@@ -7,7 +7,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type EducationtNavigationProp = {
     navigate(arg0: never, arg1: { teacherId: string; }): unknown;
-    teacherId: { teacherId: string };
+    TeacherId: { TeacherId: string };
   };
 
 const TeacherEducation: React.FC = () => {
@@ -28,6 +28,7 @@ const TeacherEducation: React.FC = () => {
             setCreateTeacherEducationPayload({ ...CreateTeacherEducationPayLoad, TeacherId: TeacherId });
             addEducation(CreateTeacherEducationPayLoad);
             navigation.navigate("TeacherSubject" as never, { teacherId: TeacherId });
+            console.log(TeacherId);
 
         } else {
             Alert.alert("Please fill all the fields");

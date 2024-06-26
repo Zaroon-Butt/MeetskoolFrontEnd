@@ -1,6 +1,5 @@
 import axios from "axios";
 
-// todo change ports
 
 export async function createStudent(createStudentPayLoad: CreateStudentPayLoad ) {
   try {
