@@ -1,48 +1,37 @@
 import axios from "axios";
-import { DeleteStudentFriendResponse } from "../interface/Friend";
+import {AddStudentFriendPayload, DeleteFriendPayload, DeleteStudentFriendResponse} from "../interface/Friend";
+import {ChangePasswordPayLoad} from "../interface/Password";
 
-export async function addStudentFriend( ) {
-  try {
-    const response = await axios.post('http://localhost:5070/api/Student/addStudentFriend',{
-      headers: {
-        'Accept': 'text/plain',
-        'Content-Type': 'application/json'
-      }
-    });
-    return response.data;
-  } catch (error) {
-    console.error('Error in Adding Student Friend  :', error);
-  }
+export async function addStudentFriend(payload: AddStudentFriendPayload): Promise<any> {
+    try {
+        return await axios.post(
+            `http://localhost:5070/api/Student/addStudentFriend`,
+            payload
+        );
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
 }
 
 
-export async function getStudentFriend(userId:string): Promise<any> {
+export async function getStudentFriend(userId: string): Promise<any> {
     try {
-      const response = await axios.get(
-        `http://localhost:5070/api/Student/getStudentFriends?userId=${userId}`
-      );
-      return response;
+        return await axios.get(
+            `http://localhost:5070/api/Student/getStudentFriends?userId=${userId}`
+        );
     } catch (error) {
-      console.error('Error in getting student Friend',error);
-      throw error;
+        console.error('Error in getting student Friend', error);
+        throw error;
     }
-  }
+}
 
 
-  export async function deleteStudentFriend(studentId: string, friendId: string): Promise<DeleteStudentFriendResponse> {
+export async function deleteStudentFriend(payload: DeleteFriendPayload): Promise<DeleteStudentFriendResponse> {
     try {
-      const response = await axios.delete('http://localhost:5070/api/Student/deleteStudentFriends', {
-        params: {
-          studentId,
-          friendId
-        },
-        headers: {
-          'Accept': 'text/plain'
-        }
-      });
-      return response.data;
+        return await axios.delete(`http://localhost:5070/api/Student/deleteStudentFriends?friendId=${payload.studentId}&studentId=${payload.friendId}`);
     } catch (error) {
-      console.error('Error in deleting student friend:', error);
-      throw error;
+        console.error('Error in deleting student friend:', error);
+        throw error;
     }
-  }
+}

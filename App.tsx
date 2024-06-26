@@ -20,6 +20,7 @@ import CreateTeacher from "./src/components/Teacher_Screens/CreateTeacher";
 import TeacherEducation from "./src/components/Teacher_Screens/TeacherEducation";
 import TeacherSubject from "./src/components/Teacher_Screens/TeacherSubject";
 import StudentSubject from "./src/components/Student_Screens/StudentSubject";
+import {StudentInfo} from "./src/components/Student_Screens/StudentInfo";
 
 export type RootStackParamList = {
   Home: undefined;
@@ -41,6 +42,7 @@ export type RootStackParamList = {
   TeacherEducation: undefined;
   TeacherSubject: undefined;
   StudentSubject: undefined;
+  StudentInfo: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -48,7 +50,7 @@ const Stack = createStackNavigator<RootStackParamList>();
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator initialRouteName="StudentInfo">
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="TeacherSignUp" component={TeacherSignUp} />
         <Stack.Screen name="StudentSignUp" component={StudentSignUp} />
@@ -67,6 +69,7 @@ function App() {
         <Stack.Screen name="TeacherEducation" component={TeacherEducation} />
         <Stack.Screen name="TeacherSubject" component={TeacherSubject} />
        <Stack.Screen name="StudentSubject" component={StudentSubject} />
+       <Stack.Screen name="StudentInfo" component={StudentInfo} />
       </Stack.Navigator>
     </NavigationContainer>
   );

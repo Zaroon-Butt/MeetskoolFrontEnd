@@ -15,10 +15,25 @@ export interface GetStudentFriendResponse {
     data: {
         friendId: string;
         friendName: string;
+    }[];
+    success: boolean;
+    messages: string[];
+    error: string[];
+}
+
+export interface AddFriendResponse {
+    data: {
+        friendId: string;
+        friendName: string;
     };
     success: boolean;
     messages: string[];
     error: string[];
 }
 
+export interface DeleteFriendPayload {
+    friendId: string;
+    studentId: string;
+
+}
 

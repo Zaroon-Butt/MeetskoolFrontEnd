@@ -5,6 +5,9 @@ import { useNavigation } from "@react-navigation/native";
 import { SignInHook } from "../../hooks/UserLoginManagmentHooks/SignInHook";
 
 const StudentSignIn: React.FC = () => {
+
+  // todo store id for friend adding
+
   const navigation = useNavigation();
 
   const [signInPayload, setSignInPayload] = useState<UserSignInPayload>({
