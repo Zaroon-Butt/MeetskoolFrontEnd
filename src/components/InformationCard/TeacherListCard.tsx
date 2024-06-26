@@ -24,7 +24,6 @@ export const TeacherListCard: React.FC<{
               <Card.Title title={teacher.teacherName} />
               <Card.Content>
                 <Text>{teacher.teacherName}</Text>
-                <Text>{teacher.teacherName}</Text>
                 <Text>Teacher Subject</Text>
               </Card.Content>
               <Card.Actions>

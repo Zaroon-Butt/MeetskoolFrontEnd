@@ -20,7 +20,7 @@ import CreateTeacher from "./src/components/Teacher_Screens/CreateTeacher";
 import TeacherEducation from "./src/components/Teacher_Screens/TeacherEducation";
 import TeacherSubject from "./src/components/Teacher_Screens/TeacherSubject";
 import StudentSubject from "./src/components/Student_Screens/StudentSubject";
-import {StudentInfo} from "./src/components/Student_Screens/StudentInfo";
+import {StudentInfo} from "./src/components/Student_Screens/StudentViewProfile";
 
 export type RootStackParamList = {
   Home: undefined;
