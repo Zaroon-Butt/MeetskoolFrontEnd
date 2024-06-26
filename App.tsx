@@ -20,9 +20,7 @@ import CreateTeacher from "./src/components/Teacher_Screens/CreateTeacher";
 import TeacherEducation from "./src/components/Teacher_Screens/TeacherEducation";
 import TeacherSubject from "./src/components/Teacher_Screens/TeacherSubject";
 import StudentSubject from "./src/components/Student_Screens/StudentSubject";
-import {StudentInfo} from "./src/components/Student_Screens/StudentViewProfile";
-import ShowStudentFriends from "./src/components/FriendScreen/ShowStudentFriends";
-
+import {StudentInfo} from "./src/components/Student_Screens/StudentInfo";
 
 export type RootStackParamList = {
   Home: undefined;
@@ -45,7 +43,6 @@ export type RootStackParamList = {
   TeacherSubject: undefined;
   StudentSubject: undefined;
   StudentInfo: undefined;
-  showStudentFriends: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -53,27 +50,26 @@ const Stack = createStackNavigator<RootStackParamList>();
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={Home} options={{ headerShown: false }}/>
-        <Stack.Screen name="TeacherSignUp" component={TeacherSignUp} options={{ headerShown: false }} />
-        <Stack.Screen name="StudentSignUp" component={StudentSignUp} options={{ headerShown: false }}/>
-        <Stack.Screen name="StudentSignIn" component={StudentSignIn} options={{ headerShown: false }}/>
-        <Stack.Screen name="StudentHome" component={StudentHome} options={{ headerShown: false }} />
-        <Stack.Screen name="TeacherHome" component={TeacherHome} options={{ headerShown: false }}/>
-        <Stack.Screen name="ForgetPassword" component={ForgetPassword}options={{ headerShown: false }} />
-        <Stack.Screen name="Verify" component={Verify}options={{ headerShown: false }} />
-        <Stack.Screen name="SignUp" component={SignUp} options={{ headerShown: false }}/>
-        <Stack.Screen name="StartUp" component={StartUp} options={{ headerShown: false }}/>
-        <Stack.Screen name="SignIn" component={StudentSignIn} options={{ headerShown: false }}/>
-        <Stack.Screen name="StudentEducation" component={StudentEducation}options={{ headerShown: false }} />
-        <Stack.Screen name="CreateStudent" component={CreateStudent}options={{ headerShown: false }} />
-        <Stack.Screen name="TeacherInfoView" component={TeacherInfoView} options={{ headerShown: false }}/>
-        <Stack.Screen name="CreateTeacher" component={CreateTeacher} options={{ headerShown: false }}/>
-        <Stack.Screen name="TeacherEducation" component={TeacherEducation} options={{ headerShown: false }}/>
-        <Stack.Screen name="TeacherSubject" component={TeacherSubject} options={{ headerShown: false }}/>
-       <Stack.Screen name="StudentSubject" component={StudentSubject}options={{ headerShown: false }} />
-       <Stack.Screen name="StudentInfo" component={StudentInfo} options={{ headerShown: false }}/>
-       <Stack.Screen name="showStudentFriends" component={ShowStudentFriends} options={{ headerShown: false }}/>
+      <Stack.Navigator initialRouteName="StudentInfo">
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="TeacherSignUp" component={TeacherSignUp} />
+        <Stack.Screen name="StudentSignUp" component={StudentSignUp} />
+        <Stack.Screen name="StudentSignIn" component={StudentSignIn} />
+        <Stack.Screen name="StudentHome" component={StudentHome} />
+        <Stack.Screen name="TeacherHome" component={TeacherHome} />
+        <Stack.Screen name="ForgetPassword" component={ForgetPassword} />
+        <Stack.Screen name="Verify" component={Verify} />
+        <Stack.Screen name="SignUp" component={SignUp} />
+        <Stack.Screen name="StartUp" component={StartUp} />
+        <Stack.Screen name="SignIn" component={StudentSignIn} />
+        <Stack.Screen name="StudentEducation" component={StudentEducation} />
+        <Stack.Screen name="CreateStudent" component={CreateStudent} />
+        <Stack.Screen name="TeacherInfoView" component={TeacherInfoView} />
+        <Stack.Screen name="CreateTeacher" component={CreateTeacher} />
+        <Stack.Screen name="TeacherEducation" component={TeacherEducation} />
+        <Stack.Screen name="TeacherSubject" component={TeacherSubject} />
+       <Stack.Screen name="StudentSubject" component={StudentSubject} />
+       <Stack.Screen name="StudentInfo" component={StudentInfo} />
       </Stack.Navigator>
     </NavigationContainer>
   );

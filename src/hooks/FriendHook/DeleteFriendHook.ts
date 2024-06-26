@@ -1,7 +1,5 @@
 import {useState} from "react";
 import {
-    AddFriendResponse,
-    AddStudentFriendPayload,
     DeleteFriendPayload,
     DeleteStudentFriendResponse
 } from "../../interface/Friend";
