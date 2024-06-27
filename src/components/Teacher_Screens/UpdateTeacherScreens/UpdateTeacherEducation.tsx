@@ -24,7 +24,7 @@ export const UpdateTeacherEducation: React.FC = () => {
     };
 
     const [updateTeacherEducationPayload, setUpdateTeacherEducationPayload] = useState<UpdateTeacherEducationPayload>({
-        studentId: Id,
+        teacherId: Id,
         degree: initialDegree,
         semester: initialSemester,
         departmentName: initialDepartmentName,

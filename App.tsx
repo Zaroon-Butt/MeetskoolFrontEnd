@@ -22,6 +22,7 @@ import TeacherSubject from "./src/components/Teacher_Screens/TeacherSubject";
 import StudentSubject from "./src/components/Student_Screens/StudentSubject";
 import { StudentInfo } from "./src/components/Student_Screens/StudentInfo";
 
+
 export type RootStackParamList = {
   Home: undefined;
   TeacherSignUp: undefined;

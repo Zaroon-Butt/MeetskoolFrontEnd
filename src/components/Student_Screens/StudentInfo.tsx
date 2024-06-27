@@ -4,7 +4,6 @@ import {Button, Card, Chip, Text} from "react-native-paper";
 import {StyleSheet} from "react-native";
 import {GetStudentInfoHook} from "../../hooks/StudentHooks/GetStudentInfoHook";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import CardActions from "react-native-paper/lib/typescript/components/Card/CardActions";
 import {NavigationProp, useNavigation} from "@react-navigation/native";
 
 export const StudentInfo: React.FC = () => {
@@ -42,14 +41,14 @@ export const StudentInfo: React.FC = () => {
             });
         }
     }
-    const handleSubject = () => {
-        if (studentResponse && studentResponse.success) {
-            navigation.navigate('UpdateSubjects', {
-                studentId: studentResponse.data.studentId,
-                subjects: studentResponse.data.subjects,
-            });
-        }
-    }
+    // const handleSubject = () => {
+    //     if (studentResponse && studentResponse.success) {
+    //         navigation.navigate('UpdateSubjects', {
+    //             studentId: studentResponse.data.studentId,
+    //             subjects: studentResponse.data.subjects,
+    //         });
+    //     }
+    // }
     return (
         <SafeAreaProvider>
             <SafeAreaView style={{flex: 1}}>
