@@ -19,7 +19,7 @@ type StudentSubjectNavigationProp = {
 
 const StudentEducation: React.FC = () => {
     const [initialCreateStudentEducation, setInitialCreateStudentEducation] = useState<CreateStudentEducationPayLoad>({
-        teacherId: "",
+        studentId: "",
         departmentName: "",
         degree: "",
         semester: 0
@@ -36,7 +36,7 @@ const StudentEducation: React.FC = () => {
             const payload = {...createStudentEducationPayload, studentId: studentId};
             setCreateStudentEducationPayload(payload);
             addEducation(payload);
-            navigation.navigate("StudentSubject" as never, {teacherId: studentId});
+            navigation.navigate("StudentSubject" as never, {studentId: studentId});
         } else {
             Alert.alert("Please fill all the fields");
         }

@@ -8,8 +8,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const CreateStudent: React.FC = () => {
 
     const[initialCreateStudent,setInitialCreateStudent]=useState<CreateStudentPayLoad>({
-        teacherId: "",
-        teacherName: "",
+        studentId:"",
+        studentName: "",
         descriptions: "",
         totalOrders: "0"
     })
@@ -45,7 +45,7 @@ const CreateStudent: React.FC = () => {
         {
           setCreateStudentPayload({
             ...CreateStudentPayLoad,
-            teacherId:id,
+            studentId:id,
           })
 
         }
@@ -75,7 +75,7 @@ const CreateStudent: React.FC = () => {
               label="Student Name"
               placeholder="Enter student name"
               mode="outlined"
-              onChangeText={(text) => setCreateStudentPayload({...CreateStudentPayLoad, teacherName: text})}
+              onChangeText={(text) => setCreateStudentPayload({...CreateStudentPayLoad, studentName: text})}
               style={styles.input}
             />
             <TextInput

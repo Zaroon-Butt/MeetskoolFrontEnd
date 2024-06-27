@@ -5,10 +5,17 @@ import { CreateTeacherEducationHook } from "../../hooks/TeacherHooks/CreateTeach
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-type EducationtNavigationProp = {
-    navigate(arg0: never, arg1: { teacherId: string; }): unknown;
-    TeacherId: { TeacherId: string };
-  };
+interface CreateTeacherEducationPayLoad {
+    TeacherId: string;
+    departmentName: string;
+    degree: string;
+    semester: number;
+}
+
+type TeacherSubjectNavigationProp = {
+    navigate(arg0: never, arg1: { TeacherId: string; }): unknown;
+    TeacherSubject: { TeacherId: string };
+};
 
 const TeacherEducation: React.FC = () => {
     const [initialCreateTeacherEducation, setInitialCreateTeacherEducation] = useState<CreateTeacherEducationPayLoad>({
@@ -17,29 +24,28 @@ const TeacherEducation: React.FC = () => {
         degree: "",
         semester: 0
     });
-    const navigation = useNavigation<EducationtNavigationProp>();
 
-    const [CreateTeacherEducationPayLoad, setCreateTeacherEducationPayload] = useState<CreateTeacherEducationPayLoad>(initialCreateTeacherEducation);
+    const navigation = useNavigation<TeacherSubjectNavigationProp>();
+    const [createTeacherEducationPayload, setCreateTeacherEducationPayload] = useState<CreateTeacherEducationPayLoad>(initialCreateTeacherEducation);
+
     const { addEducation, creatingTeacherEducation, teacherEducationResponse } = CreateTeacherEducationHook();
 
     const TeacherEducationInfo = async () => {
         let TeacherId = await AsyncStorage.getItem('TeacherId');
-        if (TeacherId && CreateTeacherEducationPayLoad.departmentName && CreateTeacherEducationPayLoad.degree && CreateTeacherEducationPayLoad.semester) {
-            setCreateTeacherEducationPayload({ ...CreateTeacherEducationPayLoad, TeacherId: TeacherId });
-            addEducation(CreateTeacherEducationPayLoad);
-            navigation.navigate("TeacherSubject" as never, { studentId: TeacherId });
-            console.log(TeacherId);
-
+        if (TeacherId && createTeacherEducationPayload.departmentName && createTeacherEducationPayload.degree && createTeacherEducationPayload.semester) {
+            const payload = { ...createTeacherEducationPayload, TeacherId: TeacherId };
+            setCreateTeacherEducationPayload(payload);
+            addEducation(payload);
+            navigation.navigate("TeacherSubject" as never, { TeacherId: TeacherId });
         } else {
             Alert.alert("Please fill all the fields");
         }
-    }
+    };
 
     useEffect(() => {
         if (teacherEducationResponse && !creatingTeacherEducation && teacherEducationResponse.success) {
             console.log(teacherEducationResponse);
-            console.log(" ya teaher Education ka response ha");
-            // Add navigation to Education screen here if needed
+            // Navigate to Education screen here if needed
         }
     }, [teacherEducationResponse]);
 
@@ -61,21 +67,33 @@ const TeacherEducation: React.FC = () => {
                             placeholder="Enter Department Name"
                             mode="outlined"
                             style={styles.input}
-                            onChangeText={(text) => setCreateTeacherEducationPayload({ ...CreateTeacherEducationPayLoad, departmentName: text })}
+                            value={createTeacherEducationPayload.departmentName}
+                            onChangeText={(text) => setCreateTeacherEducationPayload({
+                                ...createTeacherEducationPayload,
+                                departmentName: text
+                            })}
                         />
                         <TextInput
                             label="Degree"
                             placeholder="Enter Degree"
                             mode="outlined"
                             style={styles.input}
-                            onChangeText={(text) => setCreateTeacherEducationPayload({ ...CreateTeacherEducationPayLoad, degree: text })}
+                            value={createTeacherEducationPayload.degree}
+                            onChangeText={(text) => setCreateTeacherEducationPayload({
+                                ...createTeacherEducationPayload,
+                                degree: text
+                            })}
                         />
                         <TextInput
                             label="Semester"
                             placeholder="Enter Semester"
                             mode="outlined"
                             style={styles.input}
-                            onChangeText={(text) => setCreateTeacherEducationPayload({ ...CreateTeacherEducationPayLoad, semester: parseInt(text) })}
+                            value={createTeacherEducationPayload.semester.toString()}
+                            onChangeText={(text) => setCreateTeacherEducationPayload({
+                                ...createTeacherEducationPayload,
+                                semester: Number(text)
+                            })}
                         />
                     </Card.Content>
                     <Card.Actions style={styles.cardActions}>

@@ -19,7 +19,7 @@ export const ShowFriendCard: React.FC<{
         if (friendId) {
             setDeleteFriendPayload({
                 friendId: friendId,
-                teacherId: "studentId"
+                studentId: "studentId"
             });
             if (deleteFriendPayload) {
                 deleteFriend(deleteFriendPayload);

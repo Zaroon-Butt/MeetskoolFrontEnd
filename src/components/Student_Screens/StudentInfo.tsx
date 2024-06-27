@@ -41,14 +41,14 @@ export const StudentInfo: React.FC = () => {
             });
         }
     }
-    // const handleSubject = () => {
-    //     if (studentResponse && studentResponse.success) {
-    //         navigation.navigate('UpdateSubjects', {
-    //             studentId: studentResponse.data.studentId,
-    //             subjects: studentResponse.data.subjects,
-    //         });
-    //     }
-    // }
+    const handleSubject = () => {
+        if (studentResponse && studentResponse.success) {
+            navigation.navigate('UpdateSubjects', {
+                studentId: studentResponse.data.studentId,
+                subjects: studentResponse.data.subjects,
+            });
+        }
+    }
     return (
         <SafeAreaProvider>
             <SafeAreaView style={{flex: 1}}>
@@ -71,9 +71,11 @@ export const StudentInfo: React.FC = () => {
                                     <Text style={styles.label}>Total Order:</Text> {studentResponse.data.totalOrder}
                                 </Text>
                             </Card.Content>
-                            <CardActions>
+                           
+                            <Card.Actions>
                                 <Button mode="contained" onPress={handleProfile}>Edit</Button>
-                            </CardActions>
+                            </Card.Actions>
+                            
                         </Card>
                         <Card mode="elevated" style={styles.card}>
                             <Card.Title title="Education"/>
@@ -89,9 +91,9 @@ export const StudentInfo: React.FC = () => {
                                     <Text style={styles.label}>Semester:</Text> {studentResponse.data.semester}
                                 </Text>
                             </Card.Content>
-                            <CardActions>
+                            <Card.Actions>
                                 <Button mode="contained" onPress={handleEducation}>Edit</Button>
-                            </CardActions>
+                            </Card.Actions>
                         </Card>
                         <Card mode="elevated" style={styles.card}>
                             <Card.Title title="Subjects"/>
@@ -102,9 +104,9 @@ export const StudentInfo: React.FC = () => {
                                     </Chip>
                                 ))}
                             </Card.Content>
-                            <CardActions>
+                            <Card.Actions>
                                 <Button mode="contained" onPress={handleSubject}>Edit</Button>
-                            </CardActions>
+                            </Card.Actions>
 
                         </Card>
                     </>

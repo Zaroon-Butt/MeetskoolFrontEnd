@@ -21,6 +21,9 @@ import TeacherEducation from "./src/components/Teacher_Screens/TeacherEducation"
 import TeacherSubject from "./src/components/Teacher_Screens/TeacherSubject";
 import StudentSubject from "./src/components/Student_Screens/StudentSubject";
 import { StudentInfo } from "./src/components/Student_Screens/StudentInfo";
+import Chatting from "./src/components/Chatting/Chatting";
+import Order from "./src/components/Order/Order";
+import ShowStudentFriends from "./src/components/FriendScreen/ShowStudentFriends";
 
 
 export type RootStackParamList = {
@@ -45,6 +48,9 @@ export type RootStackParamList = {
   StudentSubject: undefined;
   StudentInfo: undefined;
   TeacherSignIn:undefined;
+  Chatting:undefined;
+  Order:undefined;  
+  ShowStudentFriends:undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -72,6 +78,10 @@ function App() {
         <Stack.Screen name="TeacherSubject" component={TeacherSubject} options={{ headerShown: false }}/>
        <Stack.Screen name="StudentSubject" component={StudentSubject} options={{ headerShown: false }}/>
        <Stack.Screen name="StudentInfo" component={StudentInfo} options={{ headerShown: false }}/>
+       <Stack.Screen name="Chatting" component={Chatting} options={{ headerShown: false }}/>
+       <Stack.Screen name="Order" component={Order} options={{ headerShown: false }}/>
+       <Stack.Screen name="ShowStudentFriends" component={ShowStudentFriends} options={{ headerShown: false}}/>
+       
       </Stack.Navigator>
     </NavigationContainer>
   );

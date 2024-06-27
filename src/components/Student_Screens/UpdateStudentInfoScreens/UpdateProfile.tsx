@@ -69,14 +69,14 @@ export const UpdateProfile: React.FC = () => {
                             onChangeText={text => setUserDescription(text)}
                         />
                     </Card.Content>
-                    <CardActions>
+                    <Card.Actions>
                         <Button
                             mode="contained"
                             onPress={updateStudentProfile}
                         >
                             Update
                         </Button>
-                    </CardActions>
+                    </Card.Actions>
                 </Card>
             </SafeAreaView>
         </SafeAreaProvider>

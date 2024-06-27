@@ -4,7 +4,6 @@ import {UpdateStudentProfileHook} from "../../../hooks/StudentHooks/UpdateStuden
 import {Alert, StyleSheet} from "react-native";
 import {SafeAreaProvider, SafeAreaView} from "react-native-safe-area-context";
 import {Button, Card, TextInput} from "react-native-paper";
-import CardActions from "react-native-paper/lib/typescript/components/Card/CardActions";
 import {UpdateStudentEducationHook} from "../../../hooks/StudentHooks/UpdateStudentEducationHook";
 
 export const UpdateEducation: React.FC = () => {
@@ -82,14 +81,14 @@ export const UpdateEducation: React.FC = () => {
                             onChangeText={text => setSemester(parseInt(text))}
                         />
                     </Card.Content>
-                    <CardActions>
+                    <Card.Actions>
                         <Button
                             mode="contained"
                             onPress={updateStudentEducation}
                         >
                             Update
                         </Button>
-                    </CardActions>
+                    </Card.Actions>
                 </Card>
             </SafeAreaView>
         </SafeAreaProvider>

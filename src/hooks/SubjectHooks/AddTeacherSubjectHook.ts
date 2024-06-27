@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { addTeacherSubject } from "../../apis/SubjectApi";
 
-export const AddStudentSubject = () => {
+export const AddTeacherSubject = () => {
   const [isAddingSubject, setIsAddingSubject] = useState(false);
   const [addSubjectResponse, setAddSubjectResponse] = useState<AddTeacherSubjectResponse>();
 

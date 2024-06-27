@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { getStudentSearchedSubject } from "../../apis/SubjectApi";
+
 export const GetSubjectHook = () => {
 
   const [subjectList, setSubjectList] = useState<GetSubjectListResponse | undefined>();
