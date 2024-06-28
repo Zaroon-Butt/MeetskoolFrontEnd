@@ -29,6 +29,7 @@ import { UpdateEducation } from "./src/components/Student_Screens/UpdateStudentI
 import { UpdateProfile } from "./src/components/Student_Screens/UpdateStudentInfoScreens/UpdateProfile";
 import FriendOptionPage from "./src/components/FriendScreen/FriendOptionPage";
 import { AddFriend } from "./src/components/FriendScreen/AddFriend";
+import StartSignIn from "./src/components/Extras/StartSignIn";
 
 export type RootStackParamList = {
   Home: undefined;
@@ -60,6 +61,7 @@ export type RootStackParamList = {
   UpdateProfile:undefined;
   AddFriend:undefined;
   FriendOptionPage:undefined;
+  StartSignIn:undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -94,6 +96,7 @@ function App() {
         <Stack.Screen name="UpdateProfile" component={UpdateProfile} options={{ headerShown: false }}/>
        <Stack.Screen name="ShowStudentFriends" component={ShowStudentFriends} options={{ headerShown: false}}/>
         <Stack.Screen name="AddFriend" component={AddFriend} options={{ headerShown: false}}/>
+        <Stack.Screen name="StartSignIn" component={StartSignIn} options={{ headerShown: false}}/>
         <Stack.Screen name="FriendOptionPage" component={FriendOptionPage} options={{ headerShown: false}}/>
 
        

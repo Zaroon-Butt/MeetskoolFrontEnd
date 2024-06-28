@@ -8,6 +8,7 @@ export const TeacherInfoCard: React.FC<{
     teacherInfo: GetTeacherInfoResponse | undefined;
 }> = ({teacherInfo}) => {
     return (
+        //hello hamza 
         <SafeAreaProvider>
             <SafeAreaView style={{flex: 1}}>
                 <TopNav></TopNav>

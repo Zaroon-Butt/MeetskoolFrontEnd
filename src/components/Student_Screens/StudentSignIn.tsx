@@ -7,8 +7,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const StudentSignIn: React.FC = () => {
 
-  // todo store id for friend adding
-
   const navigation = useNavigation();
 
   const [signInPayload, setSignInPayload] = useState<UserSignInPayload>({
