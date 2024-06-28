@@ -114,7 +114,7 @@ const TeacherSignUp: React.FC = () => {
           </Card.Actions>
           <View style={styles.signInContainer}>
             <Text>Already have an account? </Text>
-            <Button mode="text" onPress={() => navigation.navigate('SignIn' as never)}>
+            <Button mode="text" onPress={() => navigation.navigate('TeacherSignIn' as never)}>
               Sign In
             </Button>
           </View>

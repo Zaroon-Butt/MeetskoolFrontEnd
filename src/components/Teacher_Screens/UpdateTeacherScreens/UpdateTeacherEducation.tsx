@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
 import {useRoute} from "@react-navigation/native";
-import {UpdateStudentProfileHook} from "../../../hooks/StudentHooks/UpdateStudentProfileHook";
 import {Alert, StyleSheet} from "react-native";
 import {SafeAreaProvider, SafeAreaView} from "react-native-safe-area-context";
 import {Button, Card, TextInput} from "react-native-paper";

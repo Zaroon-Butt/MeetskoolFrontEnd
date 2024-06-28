@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { View, StyleSheet, ActivityIndicator } from "react-native";
-import { BottomNavigation, Text, Card } from "react-native-paper";
+import { Text, Card } from "react-native-paper";
 import Icon from "react-native-vector-icons/FontAwesome";
-import BottomNavigationBar from "../AppBars/BottomNavigationBar";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import TopNav from "../AppBars/TopNav";
 import { GetTeacherInfoHook } from "../../hooks/TeacherHooks/GetTeacherInfoHook";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import TeacherBottomBar from "../AppBars/TeacherBottomBar";
 
 const TeacherHome: React.FC = () => {
   const { fetchTeacherInfo, loading, teacherInfo } = GetTeacherInfoHook();
@@ -29,7 +28,7 @@ const TeacherHome: React.FC = () => {
 
   return (
     <SafeAreaProvider>
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView style={styles.container}>
         <View style={styles.container}>
           <View style={styles.header}>{/* <TopNav /> */}</View>
 
@@ -43,45 +42,43 @@ const TeacherHome: React.FC = () => {
               <Icon name="star-o" size={20} color="yellow" />
             </View>
             <View style={styles.gridContainer}>
-              <Card>
+              <Card style={styles.gridItem}>
                 <Card.Content>
                   <Text style={styles.gridText}>Revenue</Text>
                 </Card.Content>
               </Card>
-              <Card>
+              <Card style={styles.gridItem}>
                 <Card.Content>
-                  <Text style={styles.gridText}>Requests</Text>
+                  <Text style={styles.gridText}>Request</Text>
                 </Card.Content>
               </Card>
-              <Card>
+              <Card style={styles.gridItem}>
                 <Card.Content>
                   <Text style={styles.gridText}>Pending</Text>
                 </Card.Content>
               </Card>
             </View>
+            <View style={styles.informationContainer}>
+              {loading ? (
+                <ActivityIndicator size="large" color="#0000ff" />
+              ) : teacherInfo ? (
+                <Card>
+                  <Card.Content>
+                    <Text>Description: {teacherInfo.data.descriptions}</Text>
+                    <Text>Department: {teacherInfo.data.departmentName}</Text>
+                    <Text>Degree: {teacherInfo.data.degree}</Text>
+                    <Text>Semester: {teacherInfo.data.semester}</Text>
+                    <Text>Subject: {teacherInfo.data.subjectName}</Text>
+                  </Card.Content>
+                </Card>
+              ) : (
+                <Text>No teacher information available</Text>
+              )}
+            </View>
           </View>
         </View>
-
-        <View>
-          {loading ? (
-            <ActivityIndicator size="large" color="#0000ff" />
-          ) : teacherInfo ? (
-            <Card>
-              <Card.Content>
-                <Text>Description: {teacherInfo.data.descriptions}</Text>
-                <Text>Department: {teacherInfo.data.departmentName}</Text>
-                <Text>Degree: {teacherInfo.data.degree}</Text>
-                <Text>Semester: {teacherInfo.data.semester}</Text>
-                <Text>Subject: {teacherInfo.data.subjectName}</Text>
-                <Text>Student: {teacherInfo.data.studentName}</Text>
-              </Card.Content>
-            </Card>
-          ) : (
-            <Text>No teacher information available</Text>
-          )}
-        </View>
         <View style={styles.BottomNav}>
-          <BottomNavigationBar />
+          <TeacherBottomBar/>
         </View>
       </SafeAreaView>
     </SafeAreaProvider>
@@ -93,35 +90,24 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#f3e5f5",
   },
-  card: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: 16,
-  },
   header: {
-    flexDirection: "row",
-    alignItems: "center",
     backgroundColor: "white",
-  },
-  title: {
-    fontSize: 18,
-    fontWeight: "bold",
-    color: "white",
   },
   content: {
     flex: 1,
     padding: 16,
-    paddingBottom: 0,
   },
   avatarContainer: {
     width: 80,
     height: 80,
     backgroundColor: "#ce93d8",
     borderRadius: 40,
+    alignSelf: "center",
     marginBottom: 16,
   },
   ratingContainer: {
     flexDirection: "row",
+    justifyContent: "center",
     marginBottom: 16,
   },
   gridContainer: {
@@ -136,12 +122,17 @@ const styles = StyleSheet.create({
     padding: 16,
     justifyContent: "center",
     alignItems: "center",
-    marginRight: 8,
+    marginHorizontal: 4,
   },
   gridText: {
-    fontSize: 16,
+    fontSize: 12,
     fontWeight: "bold",
-    color: "gray",
+    
+  },
+  informationContainer: {
+    marginTop: 16,
+    alignSelf: "center",
+    width: '100%',
   },
   BottomNav: {
     position: "absolute",
@@ -150,4 +141,5 @@ const styles = StyleSheet.create({
     right: 0,
   },
 });
+
 export default TeacherHome;

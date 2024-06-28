@@ -10,6 +10,7 @@ interface GetSubjectListResponse {
   error: string[];
 }
 
+
 interface AddStudentSubjectPayload {
   studentId: string;
   subjectId: string;
@@ -34,7 +35,7 @@ interface AddStudentSubjectResponse {
 interface AddTeacherSubjectResponse {
   data: {
     subjectId: string;
-    TeacherId: string;
+    teacherId: string;
   };
   success: boolean;
   messages: string[];

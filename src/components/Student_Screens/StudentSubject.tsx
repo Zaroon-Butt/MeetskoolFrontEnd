@@ -15,8 +15,6 @@ const StudentSubject: React.FC = () => {
     const [studentId, setStudentId] = useState<string | null>(null);
     const navigation = useNavigation();
 
-    
-
     useEffect(() => {
         const getStudentId = async () => {
             try {
@@ -37,14 +35,16 @@ const StudentSubject: React.FC = () => {
     useEffect(() => {
         const saveId = async () => {
             try {
-                await AsyncStorage.setItem('studentId',studentId as string);
-                console.log("Saved student ID:", studentId);
+                if (studentId !== null && studentId !== undefined) {
+                    await AsyncStorage.setItem('studentId', studentId);
+                    console.log("Saved student ID:", studentId);
+                }
             } catch (error) {
                 console.error('Error saving student ID:', error);
             }
         }
         saveId();
-    }, []);
+    }, [studentId]);
 
     const handleAddSubject = (subjectId: string) => {
         if (!selectedSubjects.includes(subjectId)) {
@@ -74,7 +74,7 @@ const StudentSubject: React.FC = () => {
                         <SubjectCard
                             subjectList={subjectList}
                             onAddSubject={handleAddSubject}
-                            studentId={studentId || ""} // Pass studentId to SubjectCard
+                            studentId={studentId || ""} 
                         />
                     ) : (
                         <Text>No subjects found.</Text>
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
     nextButtonContainer: {
         position: "absolute",
         bottom: 20,
-        right: 20,
+        right: 10,
     },
 });
 

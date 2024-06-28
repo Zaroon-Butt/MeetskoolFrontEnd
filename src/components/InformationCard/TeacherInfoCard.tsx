@@ -3,7 +3,6 @@ import {View, StyleSheet} from "react-native";
 import {Button, Card, Chip, Text} from "react-native-paper";
 import {SafeAreaProvider, SafeAreaView} from "react-native-safe-area-context";
 import TopNav from "../AppBars/TopNav";
-import CardActions from "react-native-paper/lib/typescript/components/Card/CardActions";
 
 export const TeacherInfoCard: React.FC<{
     teacherInfo: GetTeacherInfoResponse | undefined;
@@ -18,7 +17,7 @@ export const TeacherInfoCard: React.FC<{
                             <Card.Title title="Profile"/>
                             <Card.Content>
                                 <Text style={styles.field}>
-                                    <Text style={styles.label}>Student Name:</Text> {teacherInfo.data.studentName}
+                                    <Text style={styles.label}>Teacher Name:</Text> {teacherInfo.data.teacherName}
                                 </Text>
                                 <Text style={styles.field}>
                                     <Text style={styles.label}>Description:</Text> {teacherInfo.data.descriptions}

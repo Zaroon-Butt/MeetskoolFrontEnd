@@ -8,26 +8,31 @@ import { Alert } from "react-native";
 
 interface SubjectCardProps {
   subjectList: GetSubjectListResponse | undefined;
-  onAddSubject: (subjectName: string) => void; // Callback function to add subject
-  studentId: string ; // Add studentId prop
+  onAddSubject: (subjectId: string) => void; // Callback function to add subject
+  studentId: string; // Add studentId prop
 }
 
 export const SubjectCard: React.FC<SubjectCardProps> = ({
   subjectList,
   onAddSubject,
   studentId,
+  
 }) => {
   const navigation: NavigationProp<any, any> = useNavigation();
 
-  const { addSubject, isAddingSubject, addSubjectResponse } =AddStudentSubject();
+  const { addSubject, isAddingSubject, addSubjectResponse } = AddStudentSubject();
 
   const handleAddSubject = async (subjectId: string, subjectName: string) => {
     if (studentId) {
-      await addSubject({ studentId: studentId , subjectId });
-      if (addSubjectResponse && addSubjectResponse.success) {
-        onAddSubject(subjectName); // Call parent callback function
-      } else {
-        Alert.alert("Failed to add subject");
+      try {
+        await addSubject({ studentId, subjectId });
+        if (addSubjectResponse && addSubjectResponse.success) {
+          onAddSubject(subjectName); // Call parent callback function
+        } else {
+          Alert.alert("Failed to add subject");
+        }
+      } catch (error) {
+        Alert.alert("Error adding subject");
       }
     } else {
       Alert.alert("Student ID not found");

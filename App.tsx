@@ -1,7 +1,7 @@
 import "react-native-gesture-handler";
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+import { Header, createStackNavigator } from "@react-navigation/stack";
 import Home from "./src/components/Extras/Home";
 import StudentSignUp from "./src/components/Student_Screens/StudentSignUp";
 import StudentHome from "./src/components/Student_Screens/StudentHome";
@@ -24,7 +24,11 @@ import { StudentInfo } from "./src/components/Student_Screens/StudentInfo";
 import Chatting from "./src/components/Chatting/Chatting";
 import Order from "./src/components/Order/Order";
 import ShowStudentFriends from "./src/components/FriendScreen/ShowStudentFriends";
-
+import UpdatePage from "./src/components/Teacher_Screens/UpdateTeacherScreens/UpdatePage";
+import { UpdateEducation } from "./src/components/Student_Screens/UpdateStudentInfoScreens/UpdateEducation";
+import { UpdateProfile } from "./src/components/Student_Screens/UpdateStudentInfoScreens/UpdateProfile";
+import FriendOptionPage from "./src/components/FriendScreen/FriendOptionPage";
+import { AddFriend } from "./src/components/FriendScreen/AddFriend";
 
 export type RootStackParamList = {
   Home: undefined;
@@ -51,6 +55,11 @@ export type RootStackParamList = {
   Chatting:undefined;
   Order:undefined;  
   ShowStudentFriends:undefined;
+  UpdatePage:undefined;
+  UpdateEducation:undefined;
+  UpdateProfile:undefined;
+  AddFriend:undefined;
+  FriendOptionPage:undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -59,7 +68,7 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Home" component={Home} options={{headerShown:false}} />
         <Stack.Screen name="TeacherSignUp" component={TeacherSignUp} options={{ headerShown: false }} />
         <Stack.Screen name="StudentSignUp" component={StudentSignUp}options={{ headerShown: false }} />
         <Stack.Screen name="StudentSignIn" component={StudentSignIn} options={{ headerShown: false }}/>
@@ -80,7 +89,13 @@ function App() {
        <Stack.Screen name="StudentInfo" component={StudentInfo} options={{ headerShown: false }}/>
        <Stack.Screen name="Chatting" component={Chatting} options={{ headerShown: false }}/>
        <Stack.Screen name="Order" component={Order} options={{ headerShown: false }}/>
+        <Stack.Screen name="UpdatePage" component={UpdatePage} options={{ headerShown: false }}/>
+        <Stack.Screen name="UpdateEducation" component={UpdateEducation} options={{ headerShown: false }}/>
+        <Stack.Screen name="UpdateProfile" component={UpdateProfile} options={{ headerShown: false }}/>
        <Stack.Screen name="ShowStudentFriends" component={ShowStudentFriends} options={{ headerShown: false}}/>
+        <Stack.Screen name="AddFriend" component={AddFriend} options={{ headerShown: false}}/>
+        <Stack.Screen name="FriendOptionPage" component={FriendOptionPage} options={{ headerShown: false}}/>
+
        
       </Stack.Navigator>
     </NavigationContainer>

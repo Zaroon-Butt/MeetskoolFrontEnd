@@ -5,13 +5,21 @@ import {Button, Card, Text} from "react-native-paper";
 import {DeleteFriendPayload, GetStudentFriendResponse} from "../../interface/Friend";
 import {DeleteFriendHook} from "../../hooks/FriendHook/DeleteFriendHook";
 import {Alert} from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const ShowFriendCard: React.FC<{
     friendList: GetStudentFriendResponse | undefined;
 }> = ({friendList}) => {
 
-    // todo get student id for storage
-
+    const StudentId = async () => {
+        let studentId = await AsyncStorage.getItem('studentId');
+        console.log(studentId);
+        };
+      
+        useEffect(() => {
+          StudentId();
+        }, []);
+      
     const navigation: NavigationProp<any, any> = useNavigation();
     const [deleteFriendPayload, setDeleteFriendPayload] = useState<DeleteFriendPayload>();
     const {deletingFriend, deleteFriend, deleteFriendResponse} = DeleteFriendHook();

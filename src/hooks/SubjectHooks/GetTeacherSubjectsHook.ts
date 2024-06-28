@@ -11,6 +11,7 @@ export const GetSubjectHook = () => {
     try {
       setLoading(true); 
       const { data } = await getTeacherSearchedSubject(teacherId);
+      setSubjectList(data);
       setLoading(false);
     } catch (error) {
       console.error(error);

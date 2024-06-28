@@ -8,11 +8,23 @@ import BottomNavigationBar from "../AppBars/BottomNavigationBar";
 import {GetTeacherListHook} from "../../hooks/TeacherHooks/GetTeacherListHook";
 import {GetStudentListHook} from "../../hooks/StudentHooks/GetStudentListHook";
 import {FriendCard} from "../InformationCard/FriendCard";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const AddFriend: React.FC = () => {
     const [searchQuery, setSearchQuery] = useState<string>("");
 
     const {studentListResponse, loading, fetchStudentList} = GetStudentListHook();
+
+    const StudentId = async () => {
+        let studentId = await AsyncStorage.getItem('studentId');
+        console.log(studentId);
+        };
+      
+        useEffect(() => {
+          StudentId();
+        }, []);
+      
+    
 
     useEffect(() => {
         fetchStudentList(searchQuery);
@@ -50,7 +62,7 @@ export const AddFriend: React.FC = () => {
                         <View style={styles.content}>
                             {studentListResponse && !loading && (
 
-                                <FriendCard friendList={studentListResponse} studentId={""}/>
+                                <FriendCard friendList={studentListResponse} studentId={''}/>
 
                             )}
                         </View>
