@@ -4,9 +4,10 @@ import { Card, Button } from "react-native-paper";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const UpdateStudentPage: React.FC = () => {
+const EditStudentProfile: React.FC = () => {
+    
   const navigation: NavigationProp<any, any> = useNavigation();
-
+  
   const StudentId = async () => {
     let studentId = await AsyncStorage.getItem('studentId');
     console.log(studentId);
@@ -15,6 +16,7 @@ const UpdateStudentPage: React.FC = () => {
     useEffect(() => {
       StudentId();
     }, []);
+  
 
   return (
     <View style={styles.container}>
@@ -29,19 +31,19 @@ const UpdateStudentPage: React.FC = () => {
         <Card.Actions style={styles.actions}>
           <Button
             mode="contained"
-            onPress={() => navigation.navigate("UpdateEducation" as never)}
+            onPress={() => navigation.navigate("AddFriend")}
             style={styles.button}
             contentStyle={styles.buttonContent}
           >
-            Education
+            Add Friend
           </Button>
           <Button
             mode="contained"
-            onPress={() => navigation.navigate("UpdateProfile" as never)}
+            onPress={() => navigation.navigate("ShowStudentFriends")}
             style={styles.button}
             contentStyle={styles.buttonContent}
           >
-            Profile
+            Show Friends
           </Button>
         </Card.Actions>
       </Card>
@@ -79,13 +81,12 @@ const styles = StyleSheet.create({
   },
   button: {
     flex: 1,
-    margin: 5, 
+    margin: 5, // Add margin between buttons
   },
   buttonContent: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-
   },
   title: {
     fontSize: 22,
@@ -95,4 +96,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default UpdateStudentPage;
+export default EditStudentProfile;

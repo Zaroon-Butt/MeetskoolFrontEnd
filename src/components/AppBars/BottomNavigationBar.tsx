@@ -32,10 +32,10 @@ const BottomNavigationBar: React.FC = () => {
           <Text style={styles.iconTitle}>Order</Text>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.iconContainer} onPress={() => navigation.navigate('StudentSignIn' as never )}>
+      <TouchableOpacity style={styles.iconContainer} onPress={() => navigation.navigate('UpdateStudentPage' as never )}>
         <View style={styles.iconAndText}>
           <Icon name="sign-out" size={24} color="#705AA9" />
-          <Text style={styles.iconTitle}>Log-Out</Text>
+          <Text style={styles.iconTitle}>Edit Profile</Text>
         </View>
       </TouchableOpacity>
     </View>
