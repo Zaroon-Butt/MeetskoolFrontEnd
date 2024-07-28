@@ -11,7 +11,6 @@ export const TeacherInfoCard: React.FC<{
         //hello hamza 
         <SafeAreaProvider>
             <SafeAreaView style={{flex: 1}}>
-                <TopNav></TopNav>
                 {teacherInfo && teacherInfo.success ? (
                     <>
                         <Card mode="elevated" style={styles.card}>

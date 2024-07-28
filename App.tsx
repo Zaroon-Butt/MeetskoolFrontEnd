@@ -62,6 +62,7 @@ export type RootStackParamList = {
     AddFriend: undefined;
     FriendOptionPage: undefined;
     StartSignIn: undefined;
+    ForgotPassword: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -98,6 +99,7 @@ function App() {
                 <Stack.Screen name="AddFriend" component={AddFriend} options={{headerShown: false}}/>
                 <Stack.Screen name="StartSignIn" component={StartSignIn} options={{headerShown: false}}/>
                 <Stack.Screen name="FriendOptionPage" component={FriendOptionPage} options={{headerShown: false}}/>
+                <Stack.Screen name="ForgotPassword" component={ForgetPassword} options={{headerShown: false}}/>
 
 
             </Stack.Navigator>

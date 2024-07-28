@@ -84,7 +84,7 @@ export async function updateTeacher(createTeacherPayLoad: CreateTeacherPayLoad) 
 
 export async function updateTeacherProfile(payload: UpdateTeacherProfilePayload): Promise<any> {
     try {
-        return await axios.post(
+        return await axios.patch(
             `http://localhost:5197/api/Teachers/updateTeacher`,
             payload
         );
@@ -96,7 +96,7 @@ export async function updateTeacherProfile(payload: UpdateTeacherProfilePayload)
 
 export async function updateTeacherEducation(payload: UpdateTeacherEducationPayload): Promise<any> {
     try {
-        return await axios.post(
+        return await axios.patch(
             `http://localhost:5197/api/Teachers/updateTeacherEducation`,
             payload
         );
