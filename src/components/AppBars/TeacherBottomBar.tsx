@@ -10,18 +10,18 @@ const BottomNavigationBar: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.iconContainer} onPress={() => navigation.navigate('Chatting' as never)}>
+{/*      <TouchableOpacity style={styles.iconContainer} onPress={() => navigation.navigate('Chatting' as never)}>
         <View style={styles.iconAndText}>
           <Icon name="comments" size={24} color="#705AA9" />
           <Text style={styles.iconTitle}>Message</Text>
         </View>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.iconContainer}  onPress={() => navigation.navigate('UpdatePage' as never)}>
+      </TouchableOpacity>*/}
+{/*      <TouchableOpacity style={styles.iconContainer}  onPress={() => navigation.navigate('TeacherProfile' as never)}>
         <View style={styles.iconAndText}>
           <Icon name="users" size={24} color="#705AA9" />
           <Text style={styles.iconTitle}>Update</Text>
         </View>
-      </TouchableOpacity>
+      </TouchableOpacity>*/}
       <TouchableOpacity style={styles.iconContainer}  onPress={() => navigation.navigate('Order' as never )}>
         <View style={styles.iconAndText}>
           <Icon name="shopping-cart" size={24} color="#705AA9" />

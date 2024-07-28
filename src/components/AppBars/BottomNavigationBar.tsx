@@ -18,12 +18,12 @@ const BottomNavigationBar: React.FC = () => {
                     <Text style={styles.iconTitle}>Profile</Text>
                 </View>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.iconContainer} onPress={() => navigation.navigate('Chatting' as never)}>
+       {/*     <TouchableOpacity style={styles.iconContainer} onPress={() => navigation.navigate('Chatting' as never)}>
                 <View style={styles.iconAndText}>
                     <Icon name="comments" size={24} color="#705AA9"/>
                     <Text style={styles.iconTitle}>Message</Text>
                 </View>
-            </TouchableOpacity>
+            </TouchableOpacity>*/}
             <TouchableOpacity style={styles.iconContainer}
                               onPress={() => navigation.navigate('FriendOptionPage' as never)}>
                 <View style={styles.iconAndText}>

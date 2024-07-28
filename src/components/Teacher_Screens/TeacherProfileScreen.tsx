@@ -4,7 +4,6 @@ import {NavigationProp, useNavigation} from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {SafeAreaProvider, SafeAreaView} from "react-native-safe-area-context";
 import {Button, Card, Chip, Text} from "react-native-paper";
-import CardActions from "react-native-paper/lib/typescript/components/Card/CardActions";
 import {StyleSheet} from "react-native";
 import {GetTeacherInfoHook} from "../../hooks/TeacherHooks/GetTeacherInfoHook";
 
@@ -72,9 +71,9 @@ export const TeacherProfile: React.FC = () => {
                                     <Text style={styles.label}>Total Order:</Text> {teacherInfo.data.totalOrder}
                                 </Text>
                             </Card.Content>
-                            <CardActions>
+                            <Card.Actions>
                                 <Button mode="contained" onPress={handleProfile}>Edit</Button>
-                            </CardActions>
+                            </Card.Actions>
                         </Card>
                         <Card mode="elevated" style={styles.card}>
                             <Card.Title title="Education"/>
@@ -90,9 +89,8 @@ export const TeacherProfile: React.FC = () => {
                                     <Text style={styles.label}>Semester:</Text> {teacherInfo.data.semester}
                                 </Text>
                             </Card.Content>
-                            <CardActions>
-                                <Button mode="contained" onPress={handleEducation}>Edit</Button>
-                            </CardActions>
+                            <Card.Actions> <Button mode="contained" onPress={handleEducation}>Edit</Button>
+                            </Card.Actions>
                         </Card>
                         <Card mode="elevated" style={styles.card}>
                             <Card.Title title="Subjects"/>
@@ -103,10 +101,8 @@ export const TeacherProfile: React.FC = () => {
                                     </Chip>
                                 ))}
                             </Card.Content>
-                            <CardActions>
-                                <Button mode="contained" onPress={handleSubject}>Edit</Button>
-                            </CardActions>
-
+                            <Card.Actions> <Button mode="contained" onPress={handleSubject}>Edit</Button>
+                            </Card.Actions>
                         </Card>
                     </>
                 ) : (
