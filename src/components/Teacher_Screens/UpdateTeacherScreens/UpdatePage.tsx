@@ -1,20 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { StyleSheet, View, Text, Dimensions } from "react-native";
 import { Card, Button } from "react-native-paper";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const UpdatePage: React.FC = () => {
   const navigation: NavigationProp<any, any> = useNavigation();
-  
-  const StudentId = async () => {
-    let studentId = await AsyncStorage.getItem('studentId');
-    console.log(studentId);
-    };
-  
-    useEffect(() => {
-      StudentId();
-    }, []);
 
   return (
     <View style={styles.container}>
@@ -29,19 +19,19 @@ const UpdatePage: React.FC = () => {
         <Card.Actions style={styles.actions}>
           <Button
             mode="contained"
-            onPress={() => navigation.navigate("UpdateTeacherEducation" as never)}
+            onPress={() => navigation.navigate("UpdateTeacherEducation")}
             style={styles.button}
             contentStyle={styles.buttonContent}
           >
-            Education
+            UpdateTeacherEducation
           </Button>
           <Button
             mode="contained"
-            onPress={() => navigation.navigate("UpdateTeacherProfile" as never)}
+            onPress={() => navigation.navigate("UpdateTeacherProfile")}
             style={styles.button}
             contentStyle={styles.buttonContent}
           >
-            Profile
+            UpdateTeacherProfile
           </Button>
         </Card.Actions>
       </Card>
@@ -79,13 +69,12 @@ const styles = StyleSheet.create({
   },
   button: {
     flex: 1,
-    margin: 5, 
+    margin: 5, // Add margin between buttons
   },
   buttonContent: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-
   },
   title: {
     fontSize: 22,
@@ -94,4 +83,5 @@ const styles = StyleSheet.create({
     color: "#333", // Darker color for better contrast
   },
 });
+
 export default UpdatePage;

@@ -30,11 +30,6 @@ import { UpdateProfile } from "./src/components/Student_Screens/UpdateStudentInf
 import FriendOptionPage from "./src/components/FriendScreen/FriendOptionPage";
 import { AddFriend } from "./src/components/FriendScreen/AddFriend";
 import StartSignIn from "./src/components/Extras/StartSignIn";
-import ChangePassword from "./src/components/Recovery/ChangePassword";
-import UpdateStudentPage from "./src/components/Student_Screens/UpdateStudentInfoScreens/UpdateStudentPage";
-import { UpdateTeacherProfile } from "./src/components/Teacher_Screens/UpdateTeacherScreens/UpdateTeacherProfile";
-import { UpdateTeacherEducation } from "./src/components/Teacher_Screens/UpdateTeacherScreens/UpdateTeacherEducation";
-
 
 export type RootStackParamList = {
   Home: undefined;
@@ -67,15 +62,11 @@ export type RootStackParamList = {
   AddFriend:undefined;
   FriendOptionPage:undefined;
   StartSignIn:undefined;
-  changePassword:undefined;
-  UpdateStudentPage:undefined;
-  UpdateTeacherEducation:undefined;
-  UpdateTeacherProfile:undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
 
-const App: React.FC= () => {
+function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
@@ -96,10 +87,10 @@ const App: React.FC= () => {
         <Stack.Screen name="CreateTeacher" component={CreateTeacher} options={{ headerShown: false }}/>
         <Stack.Screen name="TeacherEducation" component={TeacherEducation}options={{ headerShown: false }} />
         <Stack.Screen name="TeacherSubject" component={TeacherSubject} options={{ headerShown: false }}/>
-        <Stack.Screen name="StudentSubject" component={StudentSubject} options={{ headerShown: false }}/>
-        <Stack.Screen name="StudentInfo" component={StudentInfo} options={{ headerShown: false }}/>
-        <Stack.Screen name="Chatting" component={Chatting} options={{ headerShown: false }}/>
-        <Stack.Screen name="Order" component={Order} options={{ headerShown: false }}/>
+       <Stack.Screen name="StudentSubject" component={StudentSubject} options={{ headerShown: false }}/>
+       <Stack.Screen name="StudentInfo" component={StudentInfo} options={{ headerShown: false }}/>
+       <Stack.Screen name="Chatting" component={Chatting} options={{ headerShown: false }}/>
+       <Stack.Screen name="Order" component={Order} options={{ headerShown: false }}/>
         <Stack.Screen name="UpdatePage" component={UpdatePage} options={{ headerShown: false }}/>
         <Stack.Screen name="UpdateEducation" component={UpdateEducation} options={{ headerShown: false }}/>
         <Stack.Screen name="UpdateProfile" component={UpdateProfile} options={{ headerShown: false }}/>
@@ -107,13 +98,11 @@ const App: React.FC= () => {
         <Stack.Screen name="AddFriend" component={AddFriend} options={{ headerShown: false}}/>
         <Stack.Screen name="StartSignIn" component={StartSignIn} options={{ headerShown: false}}/>
         <Stack.Screen name="FriendOptionPage" component={FriendOptionPage} options={{ headerShown: false}}/>
-        <Stack.Screen name="changePassword" component={ChangePassword} options={{ headerShown: false}}/>
-        <Stack.Screen name="UpdateStudentPage" component={UpdateStudentPage} options={{ headerShown: false}}/>  
-        <Stack.Screen name="UpdateTeacherEducation" component={UpdateTeacherEducation} options={{ headerShown: false}}/>
-        <Stack.Screen name="UpdateTeacherProfile" component={UpdateTeacherProfile} options={{ headerShown: false}}/>
+
        
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
 
+export default App;

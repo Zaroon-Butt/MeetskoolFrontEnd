@@ -19,7 +19,6 @@ export const FriendCard: React.FC<FriendCardProps> = ({
     const {addFriendResponse, addingFriend, addFriend} = AddFriendHook();
 
     const handleAddFriend = (friendId: string, friendName: string) => {
-        console.log("studentId", studentId);
         if (studentId) {
             setAddFriendPayLoad({
                 friendId: friendId,
@@ -34,7 +33,9 @@ export const FriendCard: React.FC<FriendCardProps> = ({
     useEffect(() => {
         if (addFriendResponse && addFriendResponse.success) {
             Alert.alert("Friend added successfully")
-        } 
+        } else {
+            Alert.alert("Failed to add friend");
+        }
     }, []);
     return (
         <SafeAreaProvider>

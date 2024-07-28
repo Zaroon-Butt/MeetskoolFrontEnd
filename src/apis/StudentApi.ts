@@ -49,7 +49,7 @@ export async function getStudentList(searchTerm: string) {
 
 export async function updateStudentProfile(payload: UpdateStudentProfilePayload): Promise<any> {
     try {
-        return await axios.patch(
+        return await axios.post(
             `http://localhost:5070/api/Student/updateStudent`,
             payload
         );
@@ -61,7 +61,7 @@ export async function updateStudentProfile(payload: UpdateStudentProfilePayload)
 
 export async function updateStudentEducation(payload: UpdateStudentEducationPayload): Promise<any> {
     try {
-        return await axios.patch(
+        return await axios.post(
             `http://localhost:5070/api/Student/updateStudentEducation`,
             payload
         );

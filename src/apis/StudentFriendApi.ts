@@ -18,7 +18,7 @@ export async function addStudentFriend(payload: AddStudentFriendPayload): Promis
 export async function getStudentFriend(userId: string): Promise<any> {
     try {
         return await axios.get(
-            `http://localhost:5070/api/Student/getStudentFriends?studentId=${userId}`
+            `http://localhost:5070/api/Student/getStudentFriends?userId=${userId}`
         );
     } catch (error) {
         console.error('Error in getting student Friend', error);

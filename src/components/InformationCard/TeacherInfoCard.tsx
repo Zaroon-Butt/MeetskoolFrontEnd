@@ -10,7 +10,7 @@ export const TeacherInfoCard: React.FC<{
     return (
         //hello hamza 
         <SafeAreaProvider>
-            <SafeAreaView style={{marginTop: 200}}>
+            <SafeAreaView style={{flex: 1}}>
                 <TopNav></TopNav>
                 {teacherInfo && teacherInfo.success ? (
                     <>
