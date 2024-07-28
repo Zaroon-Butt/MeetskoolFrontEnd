@@ -12,19 +12,22 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const AddFriend: React.FC = () => {
     const [searchQuery, setSearchQuery] = useState<string>("");
+    const [studentId, setStudentId] = useState<string>("");
 
     const {studentListResponse, loading, fetchStudentList} = GetStudentListHook();
 
     const StudentId = async () => {
-        let studentId = await AsyncStorage.getItem('studentId');
+        let id = await AsyncStorage.getItem('studentId');
+        if (id) {
+            setStudentId(id);
+        }
         console.log(studentId);
-        };
-      
-        useEffect(() => {
-          StudentId();
-        }, []);
-      
-    
+    };
+
+    useEffect(() => {
+        StudentId();
+    }, []);
+
 
     useEffect(() => {
         fetchStudentList(searchQuery);
@@ -62,7 +65,7 @@ export const AddFriend: React.FC = () => {
                         <View style={styles.content}>
                             {studentListResponse && !loading && (
 
-                                <FriendCard friendList={studentListResponse} studentId={''}/>
+                                <FriendCard friendList={studentListResponse} studentId={studentId}/>
 
                             )}
                         </View>
